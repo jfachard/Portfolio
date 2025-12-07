@@ -1,0 +1,20 @@
+{
+    "fr": {
+        "hero": {
+            "role": "Développeur Full-Stack",
+            "firstName": "Jean-Francis",
+            "lastName": "Achard",
+            "description": "Je conçois et développe des applications web performantes avec Vue.js, React et Node.js. Actuellement en alternance chez Promo+, disponible en CDI dès octobre 2026.",
+            "cta": "Découvrir mes projets"
+        }
+    },
+    "en": {
+        "hero": {
+            "role": "Full-Stack Developer",
+            "firstName": "Jean-Francis",
+            "lastName": "Achard",
+            "description": "I design and develop high-performance web applications with Vue.js, React, and Node.js. Currently in a work-study program at Promo+, available for a permanent position starting October 2026.",
+            "cta": "Discover my projects"
+        }
+    }
+}
