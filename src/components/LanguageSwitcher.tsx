@@ -10,15 +10,14 @@ interface LanguageSwitcherProps {
 export const LanguageSwitcher = ({ 
   currentLanguage, 
   toggleLanguage, 
-  onMouseEnter, 
-  onMouseLeave 
 }: LanguageSwitcherProps) => {
   return (
-    <button 
+    <button
       onClick={toggleLanguage}
-      className="fixed top-6 right-6 z-50 text-[#8892b0] hover:text-[#64ffda] transition-colors font-mono text-xl cursor-pointer mix-blend-difference"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      className="fixed top-6 right-6 z-50 transition-colors font-mono text-xl cursor-pointer mix-blend-difference"
+      style={{ color: 'var(--text-secondary)' }}
+      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
     >
       {currentLanguage === 'fr' ? 'EN' : 'FR'}
     </button>

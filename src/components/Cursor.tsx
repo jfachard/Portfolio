@@ -14,7 +14,7 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
-  const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(29, 78, 216, 0.15), transparent 80%)`;
+  const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.15), transparent 80%)`;
 
   useEffect(() => {
     const updateMousePosition = (e: MouseEvent) => {
@@ -34,12 +34,13 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
       />
 
       <motion.div
-        className="fixed top-0 left-0 bg-gray-400 pointer-events-none z-50 shadow-sm"
+        className="fixed top-0 left-0 pointer-events-none z-50 shadow-sm"
         style={{
           x: cursorX,
           y: cursorY,
           translateX: "-50%",
-          translateY: "-50%"
+          translateY: "-50%",
+          backgroundColor: 'var(--text-secondary)'
         }}
         animate={{
           // Si c'est du texte, on devient une barre fine (2px) de la hauteur du texte
