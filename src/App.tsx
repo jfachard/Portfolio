@@ -50,8 +50,9 @@ function App() {
         onTextLeave={handleTextLeave}
       />
 
-      <Projects 
-        title={t.projects}
+      <Projects
+        texts={t.projects}
+        language={language}
         onTextHover={handleTextHover}
         onTextLeave={handleTextLeave}
       />

@@ -7,7 +7,15 @@
             "description": "Je conçois et développe des applications web performantes avec Vue.js, React et Node.js. Actuellement en alternance chez Promo+, disponible en CDI dès octobre 2026.",
             "cta": "Découvrir mes projets"
         },
-        "projects": "Projets"
+        "projects": {
+            "projects": "Projets",
+            "featuredBadge": "En vedette",
+            "featuredProject": "Projet en vedette",
+            "technologies": "Technologies",
+            "viewOnGithub": "Voir sur GitHub",
+            "viewOnUnityVC": "Voir sur Unity Version Control",
+            "liveDemo": "Démo en ligne"
+        }
     },
     "en": {
         "hero": {
@@ -17,6 +25,14 @@
             "description": "I design and develop high-performance web applications with Vue.js, React, and Node.js. Currently in a work-study program at Promo+, available for a permanent position starting October 2026.",
             "cta": "Discover my projects"
         },
-        "projects": "Projects"
+        "projects": {
+            "projects": "Projects",
+            "featuredBadge": "Featured",
+            "featuredProject": "Featured Project",
+            "technologies": "Technologies",
+            "viewOnGithub": "View on GitHub",
+            "viewOnUnityVC": "View on Unity Version Control",
+            "liveDemo": "Live Demo"
+        }
     }
 }

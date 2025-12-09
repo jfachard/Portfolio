@@ -34,7 +34,7 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
       />
 
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50 shadow-sm"
+        className="fixed top-0 left-0 pointer-events-none z-100 shadow-sm"
         style={{
           x: cursorX,
           y: cursorY,
