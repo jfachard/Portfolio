@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Cursor } from './components/Cursor'
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
+import { Skills } from './components/Skills';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import './index.css'
 import translations from '../language.json';
@@ -53,6 +54,12 @@ function App() {
       <Projects
         texts={t.projects}
         language={language}
+        onTextHover={handleTextHover}
+        onTextLeave={handleTextLeave}
+      />
+
+      <Skills 
+        texts={t.skills}
         onTextHover={handleTextHover}
         onTextLeave={handleTextLeave}
       />

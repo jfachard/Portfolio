@@ -15,6 +15,16 @@
             "viewOnGithub": "Voir sur GitHub",
             "viewOnUnityVC": "Voir sur Unity Version Control",
             "liveDemo": "Démo en ligne"
+        },
+        "skills": {
+            "title": "Compétences",
+            "subtitle": "Technologies",
+            "categories": {
+                "frontend": "Frontend",
+                "backend": "Backend",
+                "database": "Base de données",
+                "tools": "Outils & Méthodes"
+            }
         }
     },
     "en": {
@@ -33,6 +43,16 @@
             "viewOnGithub": "View on GitHub",
             "viewOnUnityVC": "View on Unity Version Control",
             "liveDemo": "Live Demo"
+        },
+        "skills": {
+            "title": "Skills",
+            "subtitle": "Technologies",
+            "categories": {
+                "frontend": "Frontend",
+                "backend": "Backend",
+                "database": "Database",
+                "tools": "Tools & Methods"
+            }
         }
     }
 }
