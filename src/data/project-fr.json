@@ -6,7 +6,7 @@
       "subtitle": "Application de quiz coding 1v1 temps réel",
       "description": "Architecture client-serveur avec communications WebSocket en temps réel. Système de matchmaking et gestion de parties multijoueurs.",
       "tags": ["React", "TypeScript", "Node.js", "Express", "Socket.io"],
-      "image": "/src/assets/images/DevDuel.png",
+      "image": "/images/DevDuel.png",
       "githubUrl": "https://github.com/jfachard/DevDuel",
       "demoUrl": "https://dev-duel-five.vercel.app/",
       "featured": true
@@ -17,7 +17,7 @@
       "subtitle": "Jeu VR d'horreur",
       "description": "Développement en équipe de 3 personnes. Gameplay d'escape room en réalité virtuelle. Gestion des assets et intégration Unity.",
       "tags": ["Unity", "C#", "VR", "Game Design"],
-      "image": "/src/assets/images/TheLastKeyIcone.png",
+      "image": "/images/TheLastKeyIcone.png",
       "githubUrl": "https://cloud.unity.com/home/organizations/9072054746043/projects/aafcf4ae-aa35-413c-9919-40b8b7c85caa/plastic-scm/organizations/9072054746043/repositories/TheLastKey%2FTheLastKey",
       "featured": false
     },
@@ -27,7 +27,7 @@
       "subtitle": "Gestionnaire de tâches mobile",
       "description": "React-Native et API Trello. Réalisation du front-end et des call api. Fonctionnalités de gestion de tâches et projets.",
       "tags": ["React Native", "TypeScript", "Trello API"],
-      "image": "/src/assets/images/Trello-Logo.png",
+      "image": "/images/Trello-Logo.png",
       "githubUrl": "https://github.com/jfachard/TrellTech",
       "featured": false
     },
@@ -37,7 +37,7 @@
       "subtitle": "Application de messagerie temps réel",
       "description": "Stack MERN avec Socket.io. Développement full-stack (front-end et back-end). Communications bidirectionnelles en temps réel.",
       "tags": ["MongoDB", "Express", "React", "Node.js", "Socket.io"],
-      "image": "/src/assets/images/Chat.png",
+      "image": "/images/Chat.png",
       "githubUrl": "https://github.com/jfachard/Chat"
     }
   ]
