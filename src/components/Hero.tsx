@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, Github, Linkedin } from 'lucide-react';
 
 interface HeroProps {
   texts: {
@@ -14,8 +14,15 @@ interface HeroProps {
 }
 
 export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
+  const goToProjects = () => {
+    const element = document.getElementById('projects');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24">
       <motion.div
         key={texts.role} 
         initial={{ opacity: 0, y: 30 }}
@@ -112,18 +119,13 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
           transition={{ delay: 0.7, duration: 0.8 }}
         >
           <motion.button
-            onClick={() => {
-              const projectsElement = document.getElementById('projects');
-              if (projectsElement) {
-                projectsElement.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+            onClick={goToProjects}
             className="inline-flex items-center gap-3 text-lg md:text-xl font-medium group cursor-pointer"
             style={{ color: 'var(--text-color)' }}
           >
             <span>{texts.cta}</span>
             <motion.span
-              animate={{ y: [0, 5, 0] }}
+              animate={{ x: [0, 5, 0] }}
               transition={{
                 repeat: Infinity,
                 duration: 1.5,
@@ -131,7 +133,7 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
               }}
               style={{ color: 'var(--accent)' }}
             >
-              <ArrowDown
+              <ArrowRight
                 size={24}
                 className="group-hover:translate-x-2 transition-transform duration-300"
               />

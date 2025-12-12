@@ -1,58 +1,172 @@
 {
-    "fr": {
-        "hero": {
-            "role": "Développeur Full-Stack",
-            "firstName": "Jean-Francis",
-            "lastName": "Achard",
-            "description": "Je conçois et développe des applications web performantes avec Vue.js, React et Node.js. Actuellement en alternance chez Promo+, disponible en CDI dès octobre 2026.",
-            "cta": "Découvrir mes projets"
-        },
-        "projects": {
-            "projects": "Projets",
-            "featuredBadge": "En vedette",
-            "featuredProject": "Projet en vedette",
-            "technologies": "Technologies",
-            "viewOnGithub": "Voir sur GitHub",
-            "viewOnUnityVC": "Voir sur Unity Version Control",
-            "liveDemo": "Démo en ligne"
-        },
-        "skills": {
-            "title": "Compétences",
-            "subtitle": "Technologies",
-            "categories": {
-                "frontend": "Frontend",
-                "backend": "Backend",
-                "database": "Base de données",
-                "tools": "Outils & Méthodes"
-            }
-        }
+  "fr": {
+    "navigation": {
+      "home": "Accueil",
+      "projects": "Projets",
+      "skills": "Compétences",
+      "experience": "Expérience",
+      "contact": "Contact"
     },
-    "en": {
-        "hero": {
-            "role": "Full-Stack Developer",
-            "firstName": "Jean-Francis",
-            "lastName": "Achard",
-            "description": "I design and develop high-performance web applications with Vue.js, React, and Node.js. Currently in a work-study program at Promo+, available for a permanent position starting October 2026.",
-            "cta": "Discover my projects"
+    "hero": {
+      "role": "Développeur Full-Stack",
+      "firstName": "Jean-Francis",
+      "lastName": "Achard",
+      "description": "Je conçois et développe des applications web performantes avec Vue.js, React et Node.js. Actuellement en alternance chez Promo+, disponible en CDI dès octobre 2026.",
+      "cta": "Découvrir mes projets"
+    },
+    "projects": {
+      "projects": "Projets",
+      "featuredBadge": "En vedette",
+      "featuredProject": "Projet en vedette",
+      "technologies": "Technologies",
+      "viewOnGithub": "Voir sur GitHub",
+      "viewOnUnityVC": "Voir sur Unity Version Control",
+      "liveDemo": "Démo en ligne"
+    },
+    "skills": {
+      "title": "Compétences",
+      "subtitle": "Technologies",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Base de données",
+        "tools": "Outils & Méthodes",
+        "infra": "Infrastructure"
+      }
+    },
+    "experience": {
+      "title": "Expériences",
+      "experiences": [
+        {
+          "company": "Promo+",
+          "position": "Développeur Front-End (Alternance)",
+          "period": "Août 2024 - Septembre 2026",
+          "location": "Nice, France",
+          "description": [
+            "Développement de fonctionnalités complexes sur une application de gestion immobilière",
+            "Intégration d'APIs REST",
+            "Création de composants réutilisables et optimisation des performances",
+            "Collaboration avec l'équipe backend pour la conception d'endpoints API"
+          ],
+          "technologies": ["Vue.js", "PrimeVue", "API REST"]
         },
-        "projects": {
-            "projects": "Projects",
-            "featuredBadge": "Featured",
-            "featuredProject": "Featured Project",
-            "technologies": "Technologies",
-            "viewOnGithub": "View on GitHub",
-            "viewOnUnityVC": "View on Unity Version Control",
-            "liveDemo": "Live Demo"
+        {
+          "company": "Interactive 4D",
+          "position": "Développeur Web",
+          "period": "Février 2024 - Août 2024",
+          "location": "Nice, France",
+          "description": [
+            "Création et intégration d'interfaces utilisateur",
+            "Développement de sites web WordPress personnalisés"
+          ],
+          "technologies": ["WordPress", "CSS"]
         },
-        "skills": {
-            "title": "Skills",
-            "subtitle": "Technologies",
-            "categories": {
-                "frontend": "Frontend",
-                "backend": "Backend",
-                "database": "Database",
-                "tools": "Tools & Methods"
-            }
+        {
+          "company": "Enedis",
+          "position": "Technicien de Maintenance",
+          "period": "Février 2023 - Avril 2023",
+          "location": "Nice, France",
+          "description": [
+            "Installation et maintenance de compteurs électriques intelligents",
+            "Configuration d'équipements modulaires d'intervention supervisés",
+            "Prise de mesures du réseau 4G pour la communication des équipements"
+          ],
+          "technologies": []
         }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "jean-francis.achard@epitech.eu",
+      "emailLabel": "E-mail",
+      "socialLabel": "Réseaux sociaux",
+      "backToTop": "Retour en haut",
+      "footer": "© 2025 Jean-Francis Achard · Développé avec React & TypeScript"
     }
+  },
+  "en": {
+    "navigation": {
+      "home": "Home",
+      "projects": "Projects",
+      "skills": "Skills",
+      "experience": "Experience",
+      "contact": "Contact"
+    },
+    "hero": {
+      "role": "Full-Stack Developer",
+      "firstName": "Jean-Francis",
+      "lastName": "Achard",
+      "description": "I design and develop high-performance web applications with Vue.js, React, and Node.js. Currently in a work-study program at Promo+, available for a permanent position starting October 2026.",
+      "cta": "Discover my projects"
+    },
+    "projects": {
+      "projects": "Projects",
+      "featuredBadge": "Featured",
+      "featuredProject": "Featured Project",
+      "technologies": "Technologies",
+      "viewOnGithub": "View on GitHub",
+      "viewOnUnityVC": "View on Unity Version Control",
+      "liveDemo": "Live Demo"
+    },
+    "skills": {
+      "title": "Skills",
+      "subtitle": "Technologies",
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "database": "Database",
+        "tools": "Tools & Methods",
+        "infra": "Infrastructure"
+      }
+    },
+    "experience": {
+      "title": "Experience",
+      "experiences": [
+        {
+          "company": "Promo+",
+          "position": "Front-End Developer (Apprenticeship)",
+          "period": "August 2024 - September 2026",
+          "location": "Nice, France",
+          "description": [
+            "Development of complex features for a real estate management application",
+            "REST API integration",
+            "Creation of reusable components and performance optimization",
+            "Collaboration with backend team for API endpoint design"
+          ],
+          "technologies": ["Vue.js", "PrimeVue", "REST API"]
+        },
+        {
+          "company": "Interactive 4D",
+          "position": "Web Developer",
+          "period": "February 2024 - August 2024",
+          "location": "Nice, France",
+          "description": [
+            "Creation and integration of user interfaces",
+            "Custom WordPress website development"
+          ],
+          "technologies": ["WordPress", "CSS"]
+        },
+        {
+          "company": "Enedis",
+          "position": "Maintenance Technician",
+          "period": "February 2023 - April 2023",
+          "location": "Nice, France",
+          "description": [
+            "Installation and maintenance of smart electric meters",
+            "Configuration of supervised modular intervention equipment",
+            "4G network measurements for equipment communication"
+          ],
+          "technologies": []
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "jean-francis.achard@epitech.eu",
+      "emailLabel": "E-mail",
+      "socialLabel": "Social Networks",
+      "backToTop": "Back to top",
+      "footer": "© 2025 Jean-Francis Achard · Built with React & TypeScript"
+    }
+  }
 }

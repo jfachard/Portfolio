@@ -43,7 +43,7 @@ export const ProjectCard = ({ project, onClick, onTextHover, onTextLeave, featur
         <img
           src={project.image}
           alt={project.title}
-          className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
+          className={`w-full h-full object-contain transition-all duration-700 group-hover:scale-110 ${
             imageLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setImageLoaded(true)}
