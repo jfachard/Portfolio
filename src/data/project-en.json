@@ -6,7 +6,7 @@
       "subtitle": "Real-time 1v1 Coding Quiz App",
       "description": "Client-server architecture with real-time WebSocket communication. Implemented matchmaking system and multiplayer game management.",
       "tags": ["React", "TypeScript", "Node.js", "Express", "Socket.io"],
-      "image": "images/DevDuel.png",
+      "image": "/images/DevDuel.png",
       "githubUrl": "https://github.com/jfachard/DevDuel",
       "demoUrl": "https://dev-duel-five.vercel.app/",
       "featured": true
@@ -17,7 +17,7 @@
       "subtitle": "VR Horror Game",
       "description": "Developed in a team of 3. VR Escape room gameplay implementation. Asset management and Unity integration.",
       "tags": ["Unity", "C#", "VR", "Game Design"],
-      "image": "images/TheLastKeyIcone.png",
+      "image": "/images/TheLastKeyIcone.png",
       "githubUrl": "https://cloud.unity.com/home/organizations/9072054746043/projects/aafcf4ae-aa35-413c-9919-40b8b7c85caa/plastic-scm/organizations/9072054746043/repositories/TheLastKey%2FTheLastKey",
       "featured": false
     },
@@ -27,7 +27,7 @@
       "subtitle": "Mobile task manager",
       "description": "Stack: React-Native and Trello API. Front-end development and API calls.",
       "tags": ["React Native", "TypeScript", "Trello API"],
-      "image": "images/Trello-Logo.png",
+      "image": "/images/Trello-Logo.png",
       "githubUrl": "https://github.com/jfachard/TrellTech",
       "featured": false
     },
@@ -37,7 +37,7 @@
       "subtitle": "Real-time messaging application",
       "description": "MERN Stack with Socket.io. Full-stack implementation (Front-end and Back-end).",
       "tags": ["MongoDB", "Express", "React", "Node.js", "Socket.io"],
-      "image": "images/Chat.png",
+      "image": "/images/Chat.png",
       "githubUrl": "https://github.com/jfachard/Chat"
     }
   ]
