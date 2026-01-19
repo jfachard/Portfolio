@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin } from 'lucide-react';
+import { NowPlaying } from './NowPlaying';
 
 interface HeroProps {
   texts: {
@@ -8,6 +9,8 @@ interface HeroProps {
     lastName: string;
     description: string;
     cta: string;
+    nowPlaying: string;
+    lastPlayed: string;
   };
   onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
   onTextLeave: () => void;
@@ -151,6 +154,11 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
           }}
         />
       </motion.div>
+
+      {/* Now Playing Widget - positioned bottom right */}
+      <div className="fixed bottom-8 right-8 z-40">
+        <NowPlaying texts={{ nowPlaying: texts.nowPlaying, lastPlayed: texts.lastPlayed }} />
+      </div>
     </section>
   );
 };

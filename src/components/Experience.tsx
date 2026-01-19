@@ -66,7 +66,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
           className="relative"
         >
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 via-purple-500/30 to-transparent" />
+          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500/50 via-purple-500/30 to-transparent" />
 
           {/* Experience items */}
           <div className="space-y-12">
@@ -77,7 +77,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                 className="relative pl-8 md:pl-20"
               >
                 {/* Timeline dot */}
-                <div className="absolute left-[-8px] md:left-[24px] top-2 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#0f172a]" />
+                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#0f172a]" />
 
                 {/* Card */}
                 <motion.div
