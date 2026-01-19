@@ -1,6 +1,16 @@
 {
   "projects": [
     {
+      "id": "workspot",
+      "title": "WorkSpot",
+      "subtitle": "Mobile App to Find Remote Work Spots",
+      "description": "Full-stack mobile application for discovering and sharing ideal remote work locations. Features include geolocation, advanced filters, favorites system, reviews, and image uploads via Cloudinary.",
+      "tags": ["React Native", "TypeScript", "Expo", "NestJS", "Prisma", "PostgreSQL"],
+      "image": "/images/WorkSpot.png",
+      "githubUrl": "https://github.com/jfachard/Work-Spot",
+      "featured": true
+    },
+    {
       "id": "devduel",
       "title": "DevDuel",
       "subtitle": "Real-time 1v1 Coding Quiz App",
