@@ -38,7 +38,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
   };
 
   return (
-    <section id="experience" className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <section id="experience" className="flex flex-col items-center justify-center px-6 py-16 md:py-20">
       <div className="max-w-5xl mx-auto w-full">
         {/* Header */}
         <motion.div
@@ -46,10 +46,10 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-14 flex justify-center"
+          className="mb-8 md:mb-14 flex justify-center"
         >
           <h2
-            className="text-6xl md:text-8xl font-bold mb-12 text-center"
+            className="text-4xl sm:text-5xl md:text-8xl font-bold mb-4 md:mb-12 text-center"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
           >
@@ -86,12 +86,12 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                     backgroundColor: 'rgba(51, 65, 85, 0.6)',
                   }}
                   transition={{ duration: 0.2 }}
-                  className="bg-[#334155]/40 backdrop-blur-sm rounded-lg p-6 border border-[#475569]/30"
+                  className="bg-[#334155]/40 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-[#475569]/30"
                 >
                   {/* Company & Position */}
                   <div className="mb-4">
                     <h3
-                      className="text-2xl font-bold text-[#f1f5f9] mb-2 flex items-center gap-2 w-fit"
+                      className="text-xl md:text-2xl font-bold text-[#f1f5f9] mb-2 flex items-center gap-2 w-fit"
                       onMouseEnter={onTextHover}
                       onMouseLeave={onTextLeave}
                     >
@@ -99,7 +99,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                       {exp.position}
                     </h3>
                     <p
-                      className="text-xl text-purple-400 font-medium w-fit"
+                      className="text-base md:text-xl text-purple-400 font-medium w-fit"
                       onMouseEnter={onTextHover}
                       onMouseLeave={onTextLeave}
                     >

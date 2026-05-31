@@ -68,6 +68,16 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
   const circularText = track.isPlaying ? texts.nowPlaying : texts.lastPlayed;
   const repeatedText = `${circularText} · `.repeat(4);
 
+  const albumArt = track.image ? (
+    <img src={track.image} alt={`${track.album} cover`} className="album-cover" />
+  ) : (
+    <div className="album-cover-placeholder">
+      <svg viewBox="0 0 24 24" fill="currentColor" className="music-icon">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+  );
+
   return (
     <motion.a
       href={track.url}
@@ -76,50 +86,48 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1, duration: 0.6 }}
-      className="now-playing-widget"
       title={`${track.name} - ${track.artist}`}
     >
-      {/* Rotating text around the circle */}
-      <div className="rotating-text">
-        <svg viewBox="0 0 100 100" className="circular-text-svg">
-          <defs>
-            <path
-              id="circlePath"
-              d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-            />
-          </defs>
-          <text className="circular-text">
-            <textPath href="#circlePath">
-              {repeatedText}
-            </textPath>
-          </text>
-        </svg>
+      {/* Desktop: full circular vinyl widget */}
+      <div className="now-playing-widget hidden lg:flex">
+        <div className="rotating-text">
+          <svg viewBox="0 0 100 100" className="circular-text-svg">
+            <defs>
+              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+            </defs>
+            <text className="circular-text">
+              <textPath href="#circlePath">{repeatedText}</textPath>
+            </text>
+          </svg>
+        </div>
+        <div className="album-cover-container">
+          {albumArt}
+          {track.isPlaying && (
+            <div className="playing-indicator">
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Album cover */}
-      <div className="album-cover-container">
-        {track.image ? (
-          <img
-            src={track.image}
-            alt={`${track.album} cover`}
-            className="album-cover"
-          />
-        ) : (
-          <div className="album-cover-placeholder">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="music-icon">
-              <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-            </svg>
-          </div>
-        )}
-
-        {/* Playing indicator */}
-        {track.isPlaying && (
-          <div className="playing-indicator">
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </div>
-        )}
+      {/* Mobile: compact pill */}
+      <div className="lg:hidden flex items-center gap-2 bg-[#1e293b]/90 backdrop-blur-lg rounded-full pl-1 pr-3 py-1 border border-[#475569]/30 max-w-[180px]">
+        <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 relative">
+          {albumArt}
+          {track.isPlaying && (
+            <div className="playing-indicator">
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+            </div>
+          )}
+        </div>
+        <div className="overflow-hidden">
+          <p className="text-[#f1f5f9] text-xs font-semibold truncate leading-tight">{track.name}</p>
+          <p className="text-[#94a3b8] text-xs truncate leading-tight">{track.artist}</p>
+        </div>
       </div>
     </motion.a>
   );

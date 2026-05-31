@@ -1,6 +1,17 @@
 {
   "projects": [
     {
+      "id": "wordev",
+      "title": "Wordev",
+      "subtitle": "Wordle for Developers",
+      "description": "Full-stack Wordle-inspired game where every word comes from the developer world. Three game modes: Solo (unlimited games), Daily (one shared word per day), and Versus (real-time 1v1 matchmaking with ELO ranking and live opponent progress via WebSockets).",
+      "tags": ["Vue.js", "TypeScript", "NestJS", "PostgreSQL", "Prisma", "Socket.io"],
+      "image": "/images/Wordev.png",
+      "githubUrl": "https://github.com/jfachard/Wordev",
+      "demoUrl": "https://wordev.jfachard.com",
+      "featured": true
+    },
+    {
       "id": "workspot",
       "title": "WorkSpot",
       "subtitle": "Mobile App to Find Remote Work Spots",

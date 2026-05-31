@@ -20,7 +20,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section id="contact" className="flex items-center justify-center px-6 py-16 md:py-20 pb-28 md:pb-20">
       <div className="max-w-6xl w-full">
         {/* Header */}
         <motion.div
@@ -28,7 +28,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-8 md:mb-16"
         >
           <motion.h2
             className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#f1f5f9] mb-8 w-fit"
@@ -54,7 +54,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-20"
         >
           {/* Email */}
           <div>
@@ -67,7 +67,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
               onMouseLeave={onTextLeave}
               whileHover={{ x: 5 }}
               className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                       hover:text-[#a855f7] transition-colors group w-fit"
+                       hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
             >
               <Mail size={24} className="text-[#a855f7]" />
               <span className="font-medium">{texts.email}</span>
@@ -88,7 +88,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit"
+                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
               >
                 <Github size={24} className="text-[#a855f7]" />
                 <span className="font-medium">GitHub</span>
@@ -102,7 +102,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit"
+                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
               >
                 <Linkedin size={24} className="text-[#a855f7]" />
                 <span className="font-medium">LinkedIn</span>
@@ -116,7 +116,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit"
+                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
               >
                 <Instagram size={24} className="text-[#a855f7]" />
                 <span className="font-medium">Instagram</span>
@@ -159,7 +159,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-20 text-center"
+          className="mt-10 md:mt-20 text-center"
         >
           <p className="text-[#94a3b8] text-sm font-mono">
             {texts.footer}

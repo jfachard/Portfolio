@@ -19,8 +19,10 @@ body {
   margin: 0;
 }
 
-* {
-  cursor: none !important;
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 /* Project Card Animations */
@@ -53,7 +55,6 @@ body {
   position: relative;
   width: 170px;
   height: 170px;
-  display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;

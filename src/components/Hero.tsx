@@ -51,7 +51,7 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
           transition={{ delay: 0.4, duration: 0.8 }}
           onMouseEnter={onTextHover}
           onMouseLeave={onTextLeave}
-          className="text-6xl md:text-8xl lg:text-9xl font-bold mb-4 leading-none w-fit"
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold mb-4 leading-none w-fit"
           style={{ color: 'var(--text-color)' }}
         >
           {texts.firstName}
@@ -63,7 +63,7 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
           transition={{ delay: 0.5, duration: 0.8 }}
           onMouseEnter={onTextHover}
           onMouseLeave={onTextLeave}
-          className="text-6xl md:text-8xl lg:text-9xl font-bold opacity-30 mb-12 leading-none w-fit"
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-bold opacity-30 mb-8 md:mb-12 leading-none w-fit"
           style={{ color: 'var(--text-secondary)' }}
         >
           {texts.lastName}
@@ -156,7 +156,7 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
       </motion.div>
 
       {/* Now Playing Widget - positioned bottom right */}
-      <div className="fixed bottom-8 right-8 z-40">
+      <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40">
         <NowPlaying texts={{ nowPlaying: texts.nowPlaying, lastPlayed: texts.lastPlayed }} />
       </div>
     </section>

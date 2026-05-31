@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring, useMotionTemplate } from 'motion/react';
 
 interface CursorProps {
@@ -7,6 +7,7 @@ interface CursorProps {
 }
 
 export const Cursor = ({ variant, height = 24 }: CursorProps) => {
+  const [isPointerDevice, setIsPointerDevice] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -17,14 +18,20 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.15), transparent 80%)`;
 
   useEffect(() => {
+    setIsPointerDevice(window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+  }, []);
+
+  useEffect(() => {
+    if (!isPointerDevice) return;
     const updateMousePosition = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
-
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isPointerDevice]);
+
+  if (!isPointerDevice) return null;
 
   return (
     <>
