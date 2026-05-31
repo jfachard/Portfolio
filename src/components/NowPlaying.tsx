@@ -132,10 +132,10 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
                 boxShadow: '0 20px 40px -8px rgba(0,0,0,0.5)',
               }}
             >
-              <p className="text-[#f1f5f9] text-sm font-semibold truncate">{track.name}</p>
-              <p className="text-[#94a3b8] text-xs truncate mt-0.5">{track.artist}</p>
+              <p className="text-[#f5f0e8] text-sm font-semibold truncate">{track.name}</p>
+              <p className="text-[#9c9488] text-xs truncate mt-0.5">{track.artist}</p>
               {track.album && (
-                <p className="text-[#64748b] text-xs truncate mt-0.5">{track.album}</p>
+                <p className="text-[#7a7262] text-xs truncate mt-0.5">{track.album}</p>
               )}
             </motion.div>
           )}
@@ -143,7 +143,7 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
       </div>
 
       {/* Mobile: compact pill */}
-      <div className="lg:hidden flex items-center gap-2 bg-[#1e293b]/90 backdrop-blur-lg rounded-full pl-1 pr-3 py-1 border border-[#475569]/30 max-w-[180px]">
+      <div className="lg:hidden flex items-center gap-2 bg-[#1c1810]/90 backdrop-blur-lg rounded-full pl-1 pr-3 py-1 border border-[#3d3628]/30 max-w-[180px]">
         <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 relative">
           {albumArt}
           {track.isPlaying && (
@@ -157,14 +157,14 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
         <div className="overflow-hidden flex-1 min-w-0">
           {track.isPlaying ? (
             <div className="overflow-hidden">
-              <span className="animate-marquee text-[#f1f5f9] text-xs font-semibold leading-tight">
+              <span className="animate-marquee text-[#f5f0e8] text-xs font-semibold leading-tight">
                 {marqueeText}
               </span>
             </div>
           ) : (
-            <p className="text-[#f1f5f9] text-xs font-semibold truncate leading-tight">{track.name}</p>
+            <p className="text-[#f5f0e8] text-xs font-semibold truncate leading-tight">{track.name}</p>
           )}
-          <p className="text-[#94a3b8] text-xs truncate leading-tight">{track.artist}</p>
+          <p className="text-[#9c9488] text-xs truncate leading-tight">{track.artist}</p>
         </div>
       </div>
     </motion.a>

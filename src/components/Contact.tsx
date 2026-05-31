@@ -31,7 +31,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
           className="mb-8 md:mb-16"
         >
           <motion.h2
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#f1f5f9] mb-8 w-fit"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#f5f0e8] mb-8 w-fit"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
           >
@@ -44,7 +44,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-px bg-gradient-to-r from-[#a855f7] via-[#a855f7]/50 to-transparent"
+            className="h-px bg-linear-to-r from-[#f59e0b] via-[#f59e0b]/50 to-transparent"
           />
         </motion.div>
 
@@ -58,7 +58,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
         >
           {/* Email */}
           <div>
-            <p className="text-[#94a3b8] uppercase tracking-wider text-sm font-mono mb-4">
+            <p className="text-[#9c9488] uppercase tracking-wider text-sm font-mono mb-4">
               {texts.emailLabel}
             </p>
             <motion.a
@@ -66,17 +66,17 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
               whileHover={{ x: 5 }}
-              className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                       hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
+              className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
+                       hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
             >
-              <Mail size={24} className="text-[#a855f7]" />
+              <Mail size={24} className="text-[#f59e0b]" />
               <span className="font-medium">{texts.email}</span>
             </motion.a>
           </div>
 
           {/* Social Links */}
           <div>
-            <p className="text-[#94a3b8] uppercase tracking-wider text-sm font-mono mb-4">
+            <p className="text-[#9c9488] uppercase tracking-wider text-sm font-mono mb-4">
               {texts.socialLabel}
             </p>
             <div className="flex flex-col gap-4">
@@ -87,10 +87,10 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
+                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
+                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
               >
-                <Github size={24} className="text-[#a855f7]" />
+                <Github size={24} className="text-[#f59e0b]" />
                 <span className="font-medium">GitHub</span>
               </motion.a>
 
@@ -101,10 +101,10 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
+                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
+                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
               >
-                <Linkedin size={24} className="text-[#a855f7]" />
+                <Linkedin size={24} className="text-[#f59e0b]" />
                 <span className="font-medium">LinkedIn</span>
               </motion.a>
 
@@ -115,10 +115,10 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
                 whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f1f5f9] text-xl md:text-2xl 
-                         hover:text-[#a855f7] transition-colors group w-fit break-all md:break-normal"
+                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
+                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
               >
-                <Instagram size={24} className="text-[#a855f7]" />
+                <Instagram size={24} className="text-[#f59e0b]" />
                 <span className="font-medium">Instagram</span>
               </motion.a>
             </div>
@@ -139,11 +139,11 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
             onMouseLeave={onTextLeave}
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.95 }}
-            className="flex flex-col items-center gap-2 text-[#94a3b8] hover:text-[#a855f7] 
+            className="flex flex-col items-center gap-2 text-[#9c9488] hover:text-[#f59e0b] 
                      transition-colors group"
           >
-            <div className="w-12 h-12 rounded-full border-2 border-[#475569] 
-                          group-hover:border-[#a855f7] flex items-center justify-center 
+            <div className="w-12 h-12 rounded-full border-2 border-[#3d3628] 
+                          group-hover:border-[#f59e0b] flex items-center justify-center 
                           transition-colors">
               <ArrowUp size={20} />
             </div>
@@ -161,7 +161,7 @@ export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-10 md:mt-20 text-center"
         >
-          <p className="text-[#94a3b8] text-sm font-mono">
+          <p className="text-[#9c9488] text-sm font-mono">
             {texts.footer}
           </p>
         </motion.div>

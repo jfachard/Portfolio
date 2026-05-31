@@ -123,8 +123,8 @@ export const ProjectModal = ({ project, isOpen, onClose, onTextHover, onTextLeav
             {project.featured && (
               <div className="inline-block px-3 py-1 rounded-full text-xs font-medium mb-4"
                 style={{
-                  backgroundColor: 'rgba(139, 92, 246, 0.2)',
-                  border: '1px solid rgba(139, 92, 246, 0.5)',
+                  backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                  border: '1px solid rgba(245, 158, 11, 0.5)',
                   color: 'var(--text-color)',
                 }}
               >
@@ -231,8 +231,8 @@ export const ProjectModal = ({ project, isOpen, onClose, onTextHover, onTextLeav
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105"
                 style={{
-                  backgroundColor: 'rgba(139, 92, 246, 0.3)',
-                  border: '1px solid rgba(139, 92, 246, 0.5)',
+                  backgroundColor: 'rgba(245, 158, 11, 0.3)',
+                  border: '1px solid rgba(245, 158, 11, 0.5)',
                   color: 'var(--text-color)',
                 }}
                 onMouseEnter={onTextHover}

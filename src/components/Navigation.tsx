@@ -24,7 +24,7 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
       if (!el) return null;
       const observer = new IntersectionObserver(
         ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0.3 }
+        { threshold: 0, rootMargin: '-10% 0px -85% 0px' }
       );
       observer.observe(el);
       return observer;
@@ -58,7 +58,7 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
       >
         {/* Ligne verticale */}
         <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent 
-                      via-[#a855f7]/50 to-transparent" />
+                      via-[#f59e0b]/50 to-transparent" />
         
         <ul className="flex flex-col gap-12 relative">
           {navItems.map((item, index) => {
@@ -79,7 +79,7 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                   className="group flex items-center gap-4"
                 >
                   {/* Numéro */}
-                  <span className="text-[#a855f7] font-mono text-sm font-bold w-10 text-right">
+                  <span className="text-[#f59e0b] font-mono text-sm font-bold w-10 text-right">
                     {item.number}
                   </span>
 
@@ -88,7 +88,7 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                     <Icon
                       size={18}
                       className={`transition-all duration-300 group-hover:scale-110
-                               ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#94a3b8] group-hover:text-[#a855f7]'}`}
+                               ${activeSection === item.id ? 'text-[#f59e0b]' : 'text-[#9c9488] group-hover:text-[#f59e0b]'}`}
                     />
                   </div>
 
@@ -97,8 +97,8 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                     initial={{ opacity: 0, width: 0 }}
                     className={`text-sm font-medium whitespace-nowrap overflow-hidden
                              opacity-0 group-hover:opacity-100 group-hover:w-auto transition-all
-                             duration-300 group-hover:text-[#a855f7]
-                             ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#cbd5e1]'}`}
+                             duration-300 group-hover:text-[#f59e0b]
+                             ${activeSection === item.id ? 'text-[#f59e0b]' : 'text-[#c8c0a8]'}`}
                   >
                     {item.label}
                   </motion.span>
@@ -150,7 +150,7 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                     <Icon
                       size={20}
                       className={`relative z-10 transition-colors duration-200 ${
-                        isActive ? 'text-[#a855f7]' : 'text-[#94a3b8]'
+                        isActive ? 'text-[#f59e0b]' : 'text-[#9c9488]'
                       }`}
                     />
                   </motion.button>

@@ -36,7 +36,7 @@ export const ProjectCard = ({ project, onClick, onTextHover, onTextLeave, featur
     >
       <div className="relative w-full aspect-3/2 overflow-hidden">
         <div
-          className={`absolute inset-0 bg-linear-to-br from-purple-500/20 to-blue-500/20 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-linear-to-br from-amber-500/20 to-orange-400/20 transition-opacity duration-300 ${
             imageLoaded ? 'opacity-0' : 'opacity-100'
           }`}
         />
@@ -66,8 +66,8 @@ export const ProjectCard = ({ project, onClick, onTextHover, onTextLeave, featur
         {project.featured && (
           <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md"
             style={{
-              backgroundColor: 'rgba(139, 92, 246, 0.3)',
-              border: '1px solid rgba(139, 92, 246, 0.5)',
+              backgroundColor: 'rgba(245, 158, 11, 0.3)',
+              border: '1px solid rgba(245, 158, 11, 0.5)',
               color: 'var(--text-color)',
             }}
           >
@@ -129,7 +129,7 @@ export const ProjectCard = ({ project, onClick, onTextHover, onTextLeave, featur
         </div>
       </div>
 
-      <div className="absolute inset-0 border-2 border-purple-500/0 group-hover:border-purple-500/50 rounded-3xl transition-all duration-300 pointer-events-none" />
+      <div className="absolute inset-0 border-2 border-amber-500/0 group-hover:border-amber-500/50 rounded-3xl transition-all duration-300 pointer-events-none" />
     </motion.div>
   );
 };

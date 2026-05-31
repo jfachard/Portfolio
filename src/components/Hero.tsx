@@ -163,7 +163,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.9, duration: 0.8 }}
             className="h-px mt-10 max-w-md"
-            style={{ background: 'linear-gradient(to right, rgba(168, 85, 247, 0.5), transparent)' }}
+            style={{ background: 'linear-gradient(to right, rgba(245, 158, 11, 0.5), transparent)' }}
           />
         </div>
 
@@ -177,19 +177,19 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
           <div className="relative w-72 h-96">
             {/* Back layers for depth */}
             <div
-              className="absolute inset-0 rounded-2xl border border-purple-500/15"
+              className="absolute inset-0 rounded-2xl border border-amber-500/15"
               style={{ transform: 'rotate(10deg) translate(10px, 10px)' }}
             />
             <div
-              className="absolute inset-0 rounded-2xl border border-purple-500/25"
+              className="absolute inset-0 rounded-2xl border border-amber-500/25"
               style={{ transform: 'rotate(6deg) translate(6px, 6px)' }}
             />
             {/* Main photo card */}
             <div
-              className="absolute inset-0 rounded-2xl overflow-hidden border-2 border-purple-500/50 shadow-2xl"
+              className="absolute inset-0 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-2xl"
               style={{
                 transform: 'rotate(-3deg)',
-                boxShadow: '0 25px 60px -10px rgba(168, 85, 247, 0.25)'
+                boxShadow: '0 25px 60px -10px rgba(245, 158, 11, 0.25)'
               }}
             >
               <img
@@ -198,7 +198,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
                 className="w-full h-full object-cover object-top"
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-[#111008]/50 via-transparent to-transparent" />
             </div>
           </div>
         </motion.div>

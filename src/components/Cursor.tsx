@@ -15,7 +15,7 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
-  const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(168, 85, 247, 0.15), transparent 80%)`;
+  const background = useMotionTemplate`radial-gradient(600px at ${mouseX}px ${mouseY}px, rgba(245, 158, 11, 0.1), transparent 80%)`;
 
   useEffect(() => {
     setIsPointerDevice(window.matchMedia('(hover: hover) and (pointer: fine)').matches);

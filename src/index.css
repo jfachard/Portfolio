@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 :root {
-  --bg-color: #0f172a;          /* Slate 900 */
-  --text-color: #f1f5f9;        /* Slate 100 */
-  --text-secondary: #94a3b8;    /* Slate 400 */
-  --accent: #a855f7;            /* Purple 500 */
+  --bg-color: #111008;
+  --text-color: #f5f0e8;
+  --text-secondary: #9c9488;
+  --accent: #f59e0b;
 }
 
 html, body, #root {
@@ -107,7 +107,7 @@ body {
 .album-cover-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--accent), #6366f1);
+  background: linear-gradient(135deg, var(--accent), #d97706);
   display: flex;
   align-items: center;
   justify-content: center;

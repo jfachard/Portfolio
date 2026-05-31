@@ -66,7 +66,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
           className="relative"
         >
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500/50 via-purple-500/30 to-transparent" />
+          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-amber-500/50 via-amber-500/30 to-transparent" />
 
           {/* Experience items */}
           <div className="space-y-12">
@@ -77,7 +77,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                 className="relative pl-8 md:pl-20"
               >
                 {/* Timeline dot */}
-                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#0f172a]" />
+                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 rounded-full bg-amber-500 border-4 border-[#111008]" />
 
                 {/* Card */}
                 <motion.div
@@ -86,20 +86,20 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                     backgroundColor: 'rgba(51, 65, 85, 0.6)',
                   }}
                   transition={{ duration: 0.2 }}
-                  className="bg-[#334155]/40 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-[#475569]/30"
+                  className="bg-[#2a2518]/40 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-[#3d3628]/30"
                 >
                   {/* Company & Position */}
                   <div className="mb-4">
                     <h3
-                      className="text-xl md:text-2xl font-bold text-[#f1f5f9] mb-2 flex items-center gap-2 w-fit"
+                      className="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-2 flex items-center gap-2 w-fit"
                       onMouseEnter={onTextHover}
                       onMouseLeave={onTextLeave}
                     >
-                      <Briefcase size={24} className="text-purple-400" />
+                      <Briefcase size={24} className="text-amber-400" />
                       {exp.position}
                     </h3>
                     <p
-                      className="text-base md:text-xl text-purple-400 font-medium w-fit"
+                      className="text-base md:text-xl text-amber-400 font-medium w-fit"
                       onMouseEnter={onTextHover}
                       onMouseLeave={onTextLeave}
                     >
@@ -108,7 +108,7 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                   </div>
 
                   {/* Period & Location */}
-                  <div className="flex flex-wrap gap-4 mb-4 text-[#94a3b8] text-sm">
+                  <div className="flex flex-wrap gap-4 mb-4 text-[#9c9488] text-sm">
                     <div className="flex items-center gap-2">
                       <Calendar size={16} />
                       <span>{exp.period}</span>
@@ -120,10 +120,10 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                   </div>
 
                   {/* Description */}
-                  <ul className="space-y-2 mb-4 text-[#cbd5e1]">
+                  <ul className="space-y-2 mb-4 text-[#c8c0a8]">
                     {exp.description.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-purple-400 mt-1.5">"</span>
+                        <span className="text-amber-400 mt-1.5">"</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -135,8 +135,8 @@ export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps)
                         {exp.technologies.map((tech, i) => (
                         <span
                             key={i}
-                            className="px-3 py-1 bg-purple-500/10 text-purple-300 rounded-md 
-                                    text-xs font-medium border border-purple-500/20"
+                            className="px-3 py-1 bg-amber-500/10 text-amber-300 rounded-md
+                                    text-xs font-medium border border-amber-500/20"
                         >
                             {tech}
                         </span>

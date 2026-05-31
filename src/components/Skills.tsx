@@ -117,7 +117,7 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
           {/* Frontend */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3
-              className="text-lg md:text-2xl font-bold text-[#f1f5f9] mb-4 md:mb-6 w-fit"
+              className="text-lg md:text-2xl font-bold text-[#f5f0e8] mb-4 md:mb-6 w-fit"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -135,13 +135,13 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: 'rgba(168, 85, 247, 0.15)',
-                      borderColor: 'rgba(168, 85, 247, 0.5)',
+                      backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                      borderColor: 'rgba(245, 158, 11, 0.5)',
                     }}
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#334155]/50 text-[#cbd5e1] rounded-lg
-                             border border-[#475569]/30 font-medium text-xs md:text-sm
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2a2518]/50 text-[#c8c0a8] rounded-lg
+                             border border-[#3d3628]/30 font-medium text-xs md:text-sm
                              transition-colors cursor-default flex items-center gap-1.5 md:gap-2"
                   >
                     <Icon size={16} />
@@ -155,7 +155,7 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
           {/* Backend */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3
-              className="text-lg md:text-2xl font-bold text-[#f1f5f9] mb-4 md:mb-6 w-fit"
+              className="text-lg md:text-2xl font-bold text-[#f5f0e8] mb-4 md:mb-6 w-fit"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -173,13 +173,13 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: 'rgba(168, 85, 247, 0.15)',
-                      borderColor: 'rgba(168, 85, 247, 0.5)',
+                      backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                      borderColor: 'rgba(245, 158, 11, 0.5)',
                     }}
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#334155]/50 text-[#cbd5e1] rounded-lg
-                             border border-[#475569]/30 font-medium text-xs md:text-sm
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2a2518]/50 text-[#c8c0a8] rounded-lg
+                             border border-[#3d3628]/30 font-medium text-xs md:text-sm
                              transition-colors cursor-default flex items-center gap-1.5 md:gap-2"
                   >
                     <Icon size={16} />
@@ -193,7 +193,7 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
           {/* Database */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3
-              className="text-lg md:text-2xl font-bold text-[#f1f5f9] mb-4 md:mb-6 w-fit"
+              className="text-lg md:text-2xl font-bold text-[#f5f0e8] mb-4 md:mb-6 w-fit"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -211,13 +211,13 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: 'rgba(168, 85, 247, 0.15)',
-                      borderColor: 'rgba(168, 85, 247, 0.5)',
+                      backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                      borderColor: 'rgba(245, 158, 11, 0.5)',
                     }}
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#334155]/50 text-[#cbd5e1] rounded-lg
-                             border border-[#475569]/30 font-medium text-xs md:text-sm
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2a2518]/50 text-[#c8c0a8] rounded-lg
+                             border border-[#3d3628]/30 font-medium text-xs md:text-sm
                              transition-colors cursor-default flex items-center gap-1.5 md:gap-2"
                   >
                     <Icon size={16} />
@@ -231,7 +231,7 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
           {/* Tools */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3
-              className="text-lg md:text-2xl font-bold text-[#f1f5f9] mb-4 md:mb-6 w-fit"
+              className="text-lg md:text-2xl font-bold text-[#f5f0e8] mb-4 md:mb-6 w-fit"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -249,13 +249,13 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: 'rgba(168, 85, 247, 0.15)',
-                      borderColor: 'rgba(168, 85, 247, 0.5)',
+                      backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                      borderColor: 'rgba(245, 158, 11, 0.5)',
                     }}
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#334155]/50 text-[#cbd5e1] rounded-lg
-                             border border-[#475569]/30 font-medium text-xs md:text-sm
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2a2518]/50 text-[#c8c0a8] rounded-lg
+                             border border-[#3d3628]/30 font-medium text-xs md:text-sm
                              transition-colors cursor-default flex items-center gap-1.5 md:gap-2"
                   >
                     <Icon size={16} />
@@ -268,7 +268,7 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
 
           <motion.div variants={itemVariants} className="space-y-4">
             <h3
-              className="text-lg md:text-2xl font-bold text-[#f1f5f9] mb-4 md:mb-6 w-fit"
+              className="text-lg md:text-2xl font-bold text-[#f5f0e8] mb-4 md:mb-6 w-fit"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -286,13 +286,13 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
                     transition={{ delay: index * 0.05 }}
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: 'rgba(168, 85, 247, 0.15)',
-                      borderColor: 'rgba(168, 85, 247, 0.5)',
+                      backgroundColor: 'rgba(245, 158, 11, 0.15)',
+                      borderColor: 'rgba(245, 158, 11, 0.5)',
                     }}
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
-                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#334155]/50 text-[#cbd5e1] rounded-lg
-                             border border-[#475569]/30 font-medium text-xs md:text-sm
+                    className="px-3 py-1.5 md:px-4 md:py-2 bg-[#2a2518]/50 text-[#c8c0a8] rounded-lg
+                             border border-[#3d3628]/30 font-medium text-xs md:text-sm
                              transition-colors cursor-default flex items-center gap-1.5 md:gap-2"
                   >
                     <Icon size={16} />
