@@ -94,10 +94,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="transition-colors"
-              style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+              className="icon-link"
             >
               <Github size={32} />
             </motion.a>
@@ -109,10 +106,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="transition-colors"
-              style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+              className="icon-link"
             >
               <Linkedin size={32} />
             </motion.a>
@@ -123,18 +117,9 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all"
-              style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'var(--accent)';
-                e.currentTarget.style.color = '#fff';
-                onTextHover(e);
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = 'var(--accent)';
-                onTextLeave();
-              }}
+              className="cv-btn flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium"
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
             >
               <Download size={16} />
               {texts.downloadCv}
@@ -146,10 +131,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="text-xs font-medium transition-colors"
-              style={{ color: 'var(--text-secondary)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+              className="icon-link text-xs font-medium"
             >
               {texts.downloadCvAts}
             </motion.a>
@@ -214,8 +196,9 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
                 src="/images/Me.JPG"
                 alt="Jean-Francis Achard"
                 className="w-full h-full object-cover object-top"
+                loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 via-transparent to-transparent" />
             </div>
           </div>
         </motion.div>

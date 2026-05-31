@@ -109,38 +109,50 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
         </ul>
       </motion.nav>
 
-      {/* Mobile Navigation - Bottom Fixed */}
+      {/* Mobile Navigation - Bottom Fixed (iOS 26 Liquid Glass) */}
       <motion.nav
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
         className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 lg:hidden"
       >
-        <div className="bg-[#1e293b]/90 backdrop-blur-lg rounded-full px-4 py-3 
-                      border border-[#475569]/30 shadow-lg shadow-black/20">
-          <ul className="flex items-center gap-2">
+        <div
+          className="rounded-full px-2 py-2 shadow-2xl shadow-black/40"
+          style={{
+            background: 'rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(40px)',
+            WebkitBackdropFilter: 'blur(40px)',
+            border: '1px solid rgba(255,255,255,0.12)',
+          }}
+        >
+          <ul className="flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = item.icon;
+              const isActive = activeSection === item.id;
               return (
                 <li key={item.id}>
                   <motion.button
                     onClick={() => scrollToSection(item.id)}
-                    onMouseEnter={onTextHover}
-                    onMouseLeave={onTextLeave}
-                    whileTap={{ scale: 0.9 }}
-                    className={`relative p-3 rounded-full transition-colors group
-                               ${activeSection === item.id ? 'bg-[#334155]/70' : 'hover:bg-[#334155]/50'}`}
+                    whileTap={{ scale: 0.85 }}
+                    className="relative p-3 rounded-full"
                   >
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-pill"
+                        className="absolute inset-0 rounded-full"
+                        style={{
+                          background: 'rgba(255,255,255,0.14)',
+                          border: '1px solid rgba(255,255,255,0.2)',
+                        }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
                     <Icon
                       size={20}
-                      className={`transition-colors ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#94a3b8] group-hover:text-[#a855f7]'}`}
+                      className={`relative z-10 transition-colors duration-200 ${
+                        isActive ? 'text-[#a855f7]' : 'text-[#94a3b8]'
+                      }`}
                     />
-                    <span className={`absolute -top-1 -right-1 w-5 h-5 rounded-full
-                                   text-white text-xs font-mono font-bold flex items-center
-                                   justify-center transition-colors
-                                   ${activeSection === item.id ? 'bg-[#a855f7]' : 'bg-[#475569]'}`}>
-                      {item.number.replace('0', '')}
-                    </span>
                   </motion.button>
                 </li>
               );

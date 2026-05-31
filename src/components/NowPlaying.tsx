@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Track {
   name: string;
@@ -20,6 +20,7 @@ interface NowPlayingProps {
 export const NowPlaying = ({ texts }: NowPlayingProps) => {
   const [track, setTrack] = useState<Track | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const fetchNowPlaying = async () => {
     try {
@@ -69,7 +70,7 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
   const repeatedText = `${circularText} · `.repeat(4);
 
   const albumArt = track.image ? (
-    <img src={track.image} alt={`${track.album} cover`} className="album-cover" />
+    <img src={track.image} alt={`${track.album} cover`} className="album-cover" loading="lazy" />
   ) : (
     <div className="album-cover-placeholder">
       <svg viewBox="0 0 24 24" fill="currentColor" className="music-icon">
@@ -77,6 +78,8 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
       </svg>
     </div>
   );
+
+  const marqueeText = `${track.name}  ·  ${track.name}  ·  `;
 
   return (
     <motion.a
@@ -86,7 +89,8 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1, duration: 0.6 }}
-      title={`${track.name} - ${track.artist}`}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
     >
       {/* Desktop: full circular vinyl widget */}
       <div className="now-playing-widget hidden lg:flex">
@@ -110,6 +114,32 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
             </div>
           )}
         </div>
+
+        {/* Custom tooltip */}
+        <AnimatePresence>
+          {showTooltip && (
+            <motion.div
+              initial={{ opacity: 0, y: 6, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.95 }}
+              transition={{ duration: 0.15 }}
+              className="absolute bottom-full right-0 mb-3 min-w-[180px] max-w-60 p-3 rounded-2xl pointer-events-none"
+              style={{
+                background: 'rgba(15,23,42,0.95)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 20px 40px -8px rgba(0,0,0,0.5)',
+              }}
+            >
+              <p className="text-[#f1f5f9] text-sm font-semibold truncate">{track.name}</p>
+              <p className="text-[#94a3b8] text-xs truncate mt-0.5">{track.artist}</p>
+              {track.album && (
+                <p className="text-[#64748b] text-xs truncate mt-0.5">{track.album}</p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Mobile: compact pill */}
@@ -124,8 +154,16 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
             </div>
           )}
         </div>
-        <div className="overflow-hidden">
-          <p className="text-[#f1f5f9] text-xs font-semibold truncate leading-tight">{track.name}</p>
+        <div className="overflow-hidden flex-1 min-w-0">
+          {track.isPlaying ? (
+            <div className="overflow-hidden">
+              <span className="animate-marquee text-[#f1f5f9] text-xs font-semibold leading-tight">
+                {marqueeText}
+              </span>
+            </div>
+          ) : (
+            <p className="text-[#f1f5f9] text-xs font-semibold truncate leading-tight">{track.name}</p>
+          )}
           <p className="text-[#94a3b8] text-xs truncate leading-tight">{track.artist}</p>
         </div>
       </div>
