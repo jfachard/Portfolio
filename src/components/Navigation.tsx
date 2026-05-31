@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Home, FolderGit2, Award, Briefcase, Mail } from 'lucide-react';
 
@@ -14,6 +15,23 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps) => {
+  const [activeSection, setActiveSection] = useState('hero');
+
+  useEffect(() => {
+    const sectionIds = ['hero', 'projects', 'skills', 'experience', 'contact'];
+    const observers = sectionIds.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+      return observer;
+    });
+    return () => observers.forEach(o => o?.disconnect());
+  }, []);
+
   const navItems = [
     { id: 'hero', label: texts.home, number: '01', icon: Home },
     { id: 'projects', label: texts.projects, number: '02', icon: FolderGit2 },
@@ -69,17 +87,18 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                   <div className="relative flex items-center justify-center w-6 h-6">
                     <Icon
                       size={18}
-                      className="text-[#94a3b8] group-hover:text-[#a855f7] group-hover:scale-110
-                               transition-all duration-300"
+                      className={`transition-all duration-300 group-hover:scale-110
+                               ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#94a3b8] group-hover:text-[#a855f7]'}`}
                     />
                   </div>
 
                   {/* Label qui apparaît au hover */}
                   <motion.span
                     initial={{ opacity: 0, width: 0 }}
-                    className="text-[#cbd5e1] text-sm font-medium whitespace-nowrap overflow-hidden
+                    className={`text-sm font-medium whitespace-nowrap overflow-hidden
                              opacity-0 group-hover:opacity-100 group-hover:w-auto transition-all
-                             duration-300 group-hover:text-[#a855f7]"
+                             duration-300 group-hover:text-[#a855f7]
+                             ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#cbd5e1]'}`}
                   >
                     {item.label}
                   </motion.span>
@@ -109,14 +128,17 @@ export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps)
                     onMouseEnter={onTextHover}
                     onMouseLeave={onTextLeave}
                     whileTap={{ scale: 0.9 }}
-                    className="relative p-3 rounded-full hover:bg-[#334155]/50 transition-colors group"
+                    className={`relative p-3 rounded-full transition-colors group
+                               ${activeSection === item.id ? 'bg-[#334155]/70' : 'hover:bg-[#334155]/50'}`}
                   >
-                    <Icon size={20} className="text-[#94a3b8] group-hover:text-[#a855f7] 
-                                             transition-colors" />
-                    {/* Numéro en mini badge */}
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#a855f7] rounded-full 
-                                   text-white text-xs font-mono font-bold flex items-center 
-                                   justify-center">
+                    <Icon
+                      size={20}
+                      className={`transition-colors ${activeSection === item.id ? 'text-[#a855f7]' : 'text-[#94a3b8] group-hover:text-[#a855f7]'}`}
+                    />
+                    <span className={`absolute -top-1 -right-1 w-5 h-5 rounded-full
+                                   text-white text-xs font-mono font-bold flex items-center
+                                   justify-center transition-colors
+                                   ${activeSection === item.id ? 'bg-[#a855f7]' : 'bg-[#475569]'}`}>
                       {item.number.replace('0', '')}
                     </span>
                   </motion.button>

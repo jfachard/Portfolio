@@ -13,6 +13,8 @@
       "lastName": "Achard",
       "description": "Je conçois et développe des applications web performantes avec Vue.js, React et Node.js. Actuellement en alternance chez Promo+, disponible en CDI dès octobre 2026.",
       "cta": "Découvrir mes projets",
+      "downloadCv": "Télécharger CV",
+      "downloadCvAts": "Version ATS",
       "nowPlaying": "En écoute",
       "lastPlayed": "Dernier son"
     },
@@ -83,7 +85,7 @@
       "emailLabel": "E-mail",
       "socialLabel": "Réseaux sociaux",
       "backToTop": "Retour en haut",
-      "footer": "© 2025 Jean-Francis Achard · Développé avec React & TypeScript"
+      "footer": "© 2026 Jean-Francis Achard · Développé avec React & TypeScript"
     }
   },
   "en": {
@@ -100,6 +102,8 @@
       "lastName": "Achard",
       "description": "I design and develop high-performance web applications with Vue.js, React, and Node.js. Currently in a work-study program at Promo+, available for a permanent position starting October 2026.",
       "cta": "Discover my projects",
+      "downloadCv": "Download CV",
+      "downloadCvAts": "ATS version",
       "nowPlaying": "Now playing",
       "lastPlayed": "Last played"
     },
@@ -170,7 +174,7 @@
       "emailLabel": "E-mail",
       "socialLabel": "Social Networks",
       "backToTop": "Back to top",
-      "footer": "© 2025 Jean-Francis Achard · Built with React & TypeScript"
+      "footer": "© 2026 Jean-Francis Achard · Built with React & TypeScript"
     }
   }
 }

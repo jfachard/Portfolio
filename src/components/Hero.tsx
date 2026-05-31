@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Download } from 'lucide-react';
 import { NowPlaying } from './NowPlaying';
 
 interface HeroProps {
@@ -9,6 +9,8 @@ interface HeroProps {
     lastName: string;
     description: string;
     cta: string;
+    downloadCv: string;
+    downloadCvAts: string;
     nowPlaying: string;
     lastPlayed: string;
   };
@@ -16,7 +18,7 @@ interface HeroProps {
   onTextLeave: () => void;
 }
 
-export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
+export const Hero = ({ texts, onTextHover, onTextLeave, language }: HeroProps & { language: 'fr' | 'en' }) => {
   const goToProjects = () => {
     const element = document.getElementById('projects');
     if (element) {
@@ -81,7 +83,7 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
           {texts.description}
         </motion.p>
 
-        <div className="flex space-x-4 mb-8">
+        <div className="flex items-center gap-4 mb-8">
           <motion.a
             href="https://github.com/jfachard"
             target="_blank"
@@ -113,6 +115,43 @@ export const Hero = ({ texts, onTextHover, onTextLeave }: HeroProps) => {
             onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
           >
             <Linkedin size={32} />
+          </motion.a>
+
+          <motion.a
+            href={`/CV_visual_${language.toUpperCase()}.pdf`}
+            download
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all"
+            style={{ borderColor: 'var(--accent)', color: 'var(--accent)' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--accent)';
+              e.currentTarget.style.color = '#fff';
+              onTextHover(e);
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = 'var(--accent)';
+              onTextLeave();
+            }}
+          >
+            <Download size={16} />
+            {texts.downloadCv}
+          </motion.a>
+
+          <motion.a
+            href={`/CV_${language.toUpperCase()}.pdf`}
+            download
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            className="text-xs font-medium transition-colors"
+            style={{ color: 'var(--text-secondary)' }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
+            onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            {texts.downloadCvAts}
           </motion.a>
         </div>
 

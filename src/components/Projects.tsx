@@ -60,9 +60,9 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
 
   return (
     <LayoutGroup>
-      <div id="projects" className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
+      <div id="projects" className="flex flex-col items-center justify-center px-6 py-16 md:py-20">
         <h2
-          className="text-6xl md:text-8xl font-bold mb-16 text-center w-fit"
+          className="text-4xl sm:text-5xl md:text-8xl font-bold mb-8 md:mb-16 text-center w-fit"
           style={{ color: 'var(--text-color)' }}
           onMouseEnter={onTextHover}
           onMouseLeave={onTextLeave}

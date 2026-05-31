@@ -29,31 +29,41 @@ export const Skills = ({ texts, onTextHover, onTextLeave }: SkillsProps) => {
     frontend: [
       { name: 'Vue.js', icon: Code2 },
       { name: 'React', icon: Code2 },
+      { name: 'React Native', icon: Code2 },
       { name: 'TypeScript', icon: Code2 },
       { name: 'JavaScript', icon: Code2 },
       { name: 'HTML/CSS', icon: Code2 },
       { name: 'Tailwind CSS', icon: Code2 },
       { name: 'PrimeVue', icon: Code2 },
-      { name: 'Vite', icon: Code2 }
+      { name: 'Pinia', icon: Code2 },
+      { name: 'Vite', icon: Code2 },
+      { name: 'Expo', icon: Code2 },
     ],
     backend: [
+      { name: 'NestJS', icon: Server },
       { name: 'Node.js', icon: Server },
       { name: 'Express', icon: Server },
       { name: 'Socket.io', icon: Server },
-      { name: 'WebSockets', icon: Server },
+      { name: 'REST API', icon: Server },
+      { name: 'JWT', icon: Server },
       { name: 'PHP', icon: Server },
-      { name: 'REST API', icon: Server }
     ],
     database: [
+      { name: 'PostgreSQL', icon: Database },
+      { name: 'Prisma', icon: Database },
       { name: 'MongoDB', icon: Database },
-      { name: 'MySQL', icon: Database }
+      { name: 'MySQL', icon: Database },
     ],
     tools: [
       { name: 'Git', icon: GitBranch },
       { name: 'GitHub', icon: Github },
+      { name: 'Docker', icon: Workflow },
+      { name: 'Figma', icon: Workflow },
     ],
     infra:[
       { name: 'CI/CD', icon: Workflow },
+      { name: 'Railway', icon: Workflow },
+      { name: 'Vercel', icon: Workflow },
     ]
   };
 

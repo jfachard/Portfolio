@@ -59,6 +59,7 @@ function App() {
       {/* Toutes les sections sur la même page */}
       <Hero
         texts={t.hero}
+        language={language}
         onTextHover={handleTextHover}
         onTextLeave={handleTextLeave}
       />
