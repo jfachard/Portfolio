@@ -5,6 +5,11 @@
       "title": "Wordev",
       "subtitle": "Wordle for Developers",
       "description": "Full-stack Wordle-inspired game where every word comes from the developer world. Three game modes: Solo (unlimited games), Daily (one shared word per day), and Versus (real-time 1v1 matchmaking with ELO ranking and live opponent progress via WebSockets).",
+      "caseStudy": {
+        "problem": "Ship a developer-themed Wordle that also supports fair real-time Versus — live opponent progress and a ranking that actually sticks.",
+        "decision": "NestJS + Socket.io for Versus rooms, Prisma/PostgreSQL for shared daily + ELO, Vue.js on the client. Server is source of truth (guess validation, state sync).",
+        "result": "3 modes in production (Solo / Daily / Versus), 1v1 matchmaking, persistent ELO, live opponent progress. Live at wordev.jfachard.com"
+      },
       "tags": ["Vue.js", "TypeScript", "NestJS", "PostgreSQL", "Prisma", "Socket.io"],
       "image": "/images/Wordev.png",
       "githubUrl": "https://github.com/jfachard/Wordev",
@@ -16,6 +21,11 @@
       "title": "WorkSpot",
       "subtitle": "Mobile App to Find Remote Work Spots",
       "description": "Full-stack mobile application for discovering and sharing ideal remote work locations. Features include geolocation, advanced filters, favorites system, reviews, and image uploads via Cloudinary.",
+      "caseStudy": {
+        "problem": "Remote workers need spots filtered by Wi‑Fi, outlets, noise — generic maps don't cut it.",
+        "decision": "Expo + React Native for fast iOS/Android iteration, NestJS/Prisma for the API, Cloudinary for image uploads, geolocation + server-side filters.",
+        "result": "Full-stack mobile app: spot discovery, favorites, reviews, image upload, geo filters. API stack ready to scale."
+      },
       "tags": ["React Native", "TypeScript", "Expo", "NestJS", "Prisma", "PostgreSQL"],
       "image": "/images/WorkSpot.png",
       "githubUrl": "https://github.com/jfachard/Work-Spot",
@@ -26,6 +36,11 @@
       "title": "DevDuel",
       "subtitle": "Real-time 1v1 Coding Quiz App",
       "description": "Client-server architecture with real-time WebSocket communication. Implemented matchmaking system and multiplayer game management.",
+      "caseStudy": {
+        "problem": "Two players racing a coding quiz at the same time — latency, state sync, and matchmaking without heavy infra.",
+        "decision": "React + Express + Socket.io: ephemeral rooms, FIFO matchmaking, game state pushed to both clients instead of polling.",
+        "result": "Synced 1v1 duels, working matchmaking, deployed demo. Validated the realtime pattern later reused in Wordev Versus."
+      },
       "tags": ["React", "TypeScript", "Node.js", "Express", "Socket.io"],
       "image": "/images/DevDuel.png",
       "githubUrl": "https://github.com/jfachard/DevDuel",
@@ -37,6 +52,11 @@
       "title": "The Last Key",
       "subtitle": "VR Horror Game",
       "description": "Developed in a team of 3. VR Escape room gameplay implementation. Asset management and Unity integration.",
+      "caseStudy": {
+        "problem": "Ship a playable VR escape room in a small team — interactions, horror pacing, headset perf.",
+        "decision": "Unity + C# + VR: split game design / assets / integration, Plastic SCM (Unity Version Control) for collab.",
+        "result": "Playable VR prototype (team of 3): puzzles, atmosphere, asset integration. Focus on collab and VR runtime constraints."
+      },
       "tags": ["Unity", "C#", "VR", "Game Design"],
       "image": "/images/TheLastKeyIcone.png",
       "githubUrl": "https://cloud.unity.com/home/organizations/9072054746043/projects/aafcf4ae-aa35-413c-9919-40b8b7c85caa/plastic-scm/organizations/9072054746043/repositories/TheLastKey%2FTheLastKey",
@@ -47,6 +67,11 @@
       "title": "Project Management Mobile App",
       "subtitle": "Mobile task manager",
       "description": "Stack: React-Native and Trello API. Front-end development and API calls.",
+      "caseStudy": {
+        "problem": "Use Trello from mobile without rebuilding a backend — consume the existing API cleanly.",
+        "decision": "React Native + TypeScript, Trello REST (boards, lists, cards), task/project-oriented UI.",
+        "result": "Working mobile client on Trello: read/manage tasks via the official API."
+      },
       "tags": ["React Native", "TypeScript", "Trello API"],
       "image": "/images/Trello-Logo.png",
       "githubUrl": "https://github.com/jfachard/TrellTech",
@@ -57,6 +82,11 @@
       "title": "IRC Chat",
       "subtitle": "Real-time messaging application",
       "description": "MERN Stack with Socket.io. Full-stack implementation (Front-end and Back-end).",
+      "caseStudy": {
+        "problem": "IRC-style instant messaging: live messages, rooms, no refresh.",
+        "decision": "MERN + Socket.io — bidirectional events, MongoDB for persistence, React client.",
+        "result": "Full-stack realtime chat: rooms, pushed messages, end-to-end MERN ownership."
+      },
       "tags": ["MongoDB", "Express", "React", "Node.js", "Socket.io"],
       "image": "/images/Chat.png",
       "githubUrl": "https://github.com/jfachard/Chat"

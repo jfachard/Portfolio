@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 export type CursorVariant = 'default' | 'text' | 'pointer';
@@ -15,10 +15,17 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   const [isPointerDevice, setIsPointerDevice] = useState(false);
   const [onAccent, setOnAccent] = useState(false);
   const [overInteractive, setOverInteractive] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 700 };
+  const onAccentRef = useRef(false);
+  const overInteractiveRef = useRef(false);
+  const rafHit = useRef(0);
+  const lastClient = useRef({ x: 0, y: 0 });
+
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Snappy follow — less "laggy trail" feel
+  const springConfig = { damping: 28, stiffness: 900, mass: 0.4 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -29,23 +36,46 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   useEffect(() => {
     if (!isPointerDevice) return;
 
-    const updateMousePosition = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
+    const runHitTest = () => {
+      rafHit.current = 0;
+      const { x, y } = lastClient.current;
+      const el = document.elementFromPoint(x, y);
 
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      setOnAccent(!!el?.closest('#contact'));
+      const accent = !!el?.closest('#contact');
+      if (accent !== onAccentRef.current) {
+        onAccentRef.current = accent;
+        setOnAccent(accent);
+      }
 
       const hit = el?.closest(INTERACTIVE) as HTMLElement | null;
       const disabled =
-        hit?.hasAttribute('disabled') ||
-        hit?.getAttribute('aria-disabled') === 'true' ||
-        hit?.closest('[aria-disabled="true"]');
-      setOverInteractive(!!hit && !disabled);
+        !!hit &&
+        (hit.hasAttribute('disabled') ||
+          hit.getAttribute('aria-disabled') === 'true' ||
+          !!hit.closest('[aria-disabled="true"]'));
+      const interactive = !!hit && !disabled;
+      if (interactive !== overInteractiveRef.current) {
+        overInteractiveRef.current = interactive;
+        setOverInteractive(interactive);
+      }
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    const updateMousePosition = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+      lastClient.current = { x: e.clientX, y: e.clientY };
+
+      // Hit-test at most once per frame
+      if (!rafHit.current) {
+        rafHit.current = requestAnimationFrame(runHitTest);
+      }
+    };
+
+    window.addEventListener('mousemove', updateMousePosition, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', updateMousePosition);
+      if (rafHit.current) cancelAnimationFrame(rafHit.current);
+    };
   }, [mouseX, mouseY, isPointerDevice]);
 
   if (!isPointerDevice) return null;
@@ -55,7 +85,7 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-100"
+      className="fixed top-0 left-0 pointer-events-none z-100 will-change-transform"
       style={{
         x: cursorX,
         y: cursorY,
@@ -73,7 +103,7 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
         borderRadius: effective === 'text' ? 0 : 9999,
         opacity: effective === 'pointer' ? 1 : effective === 'text' ? 0.95 : 0.85,
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+      transition={{ type: 'tween', duration: 0.15, ease: 'easeOut' }}
     />
   );
 };

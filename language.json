@@ -28,7 +28,12 @@
       "technologies": "Technologies",
       "viewOnGithub": "Voir sur GitHub",
       "viewOnUnityVC": "Voir sur Unity Version Control",
-      "liveDemo": "Démo en ligne"
+      "liveDemo": "Démo en ligne",
+      "caseStudy": {
+        "problem": "Problème",
+        "decision": "Décision",
+        "result": "Résultat"
+      }
     },
     "skills": {
       "title": "Compétences",
@@ -126,7 +131,12 @@
       "technologies": "Technologies",
       "viewOnGithub": "View on GitHub",
       "viewOnUnityVC": "View on Unity Version Control",
-      "liveDemo": "Live Demo"
+      "liveDemo": "Live Demo",
+      "caseStudy": {
+        "problem": "Problem",
+        "decision": "Decision",
+        "result": "Outcome"
+      }
     },
     "skills": {
       "title": "Skills",

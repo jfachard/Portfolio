@@ -17,8 +17,6 @@ interface ProjectCardProps {
   index: number;
   variant?: 'hero' | 'compact';
   onClick: () => void;
-  onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
-  onTextLeave: () => void;
   featuredText: string;
   liveDemoText?: string;
 }
@@ -28,8 +26,6 @@ export const ProjectCard = ({
   index,
   variant = 'compact',
   onClick,
-  onTextHover,
-  onTextLeave,
   featuredText,
   liveDemoText,
 }: ProjectCardProps) => {
@@ -84,25 +80,13 @@ export const ProjectCard = ({
             <span className="font-mono text-[11px] font-semibold tracking-[0.08em] text-(--accent) block mb-2.5">
               {number} — {featuredText}
             </span>
-            <h3
-              className="font-display text-[clamp(1.75rem,6vw,2.75rem)] leading-[0.95] m-0 mb-2.5 group-hover:text-(--accent) transition-colors"
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
+            <h3 className="font-display text-[clamp(1.75rem,6vw,2.75rem)] leading-[0.95] m-0 mb-2.5 group-hover:text-(--accent) transition-colors">
               {project.title}
             </h3>
-            <p
-              className="text-[14px] sm:text-[15px] md:text-[16px] font-medium leading-[1.4] opacity-70 m-0 mb-2"
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
+            <p className="text-[14px] sm:text-[15px] md:text-[16px] font-medium leading-[1.4] opacity-70 m-0 mb-2">
               {project.subtitle}
             </p>
-            <p
-              className="text-[13px] leading-[1.55] opacity-45 m-0 line-clamp-3 sm:line-clamp-2"
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
+            <p className="text-[13px] leading-[1.55] opacity-45 m-0 line-clamp-3 sm:line-clamp-2">
               {project.description}
             </p>
           </div>
@@ -143,27 +127,15 @@ export const ProjectCard = ({
         }
       }}
     >
-      <span
-        className="font-mono text-[11px] sm:text-[12px] font-semibold tracking-[0.08em] opacity-35 group-hover:opacity-100 group-hover:text-(--accent) transition-all pt-0.5 sm:pt-0"
-        onMouseEnter={onTextHover}
-        onMouseLeave={onTextLeave}
-      >
+      <span className="font-mono text-[11px] sm:text-[12px] font-semibold tracking-[0.08em] opacity-35 group-hover:opacity-100 group-hover:text-(--accent) transition-all pt-0.5 sm:pt-0">
         {number}
       </span>
 
       <div className="min-w-0">
-        <h3
-          className="text-[15px] sm:text-[17px] font-bold leading-snug m-0 group-hover:text-(--accent) transition-colors"
-          onMouseEnter={onTextHover}
-          onMouseLeave={onTextLeave}
-        >
+        <h3 className="text-[15px] sm:text-[17px] font-bold leading-snug m-0 group-hover:text-(--accent) transition-colors">
           {project.title}
         </h3>
-        <p
-          className="text-[12px] sm:text-[13px] opacity-45 m-0 mt-1 line-clamp-2 sm:line-clamp-1"
-          onMouseEnter={onTextHover}
-          onMouseLeave={onTextLeave}
-        >
+        <p className="text-[12px] sm:text-[13px] opacity-45 m-0 mt-1 line-clamp-2 sm:line-clamp-1">
           {project.subtitle}
         </p>
         <div className="flex gap-1.5 flex-wrap mt-2 sm:hidden">
