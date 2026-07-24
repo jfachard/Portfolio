@@ -5,7 +5,7 @@ import photosData from '../data/photos.json';
 interface Photo {
   id: string;
   src: string;
-  alt: string;
+  alt: { fr: string; en: string };
   place: string;
   year: string;
 }
@@ -15,6 +15,7 @@ interface PhotosProps {
     sectionLabel: string;
     hint: string;
   };
+  language: 'fr' | 'en';
   onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
   onTextLeave: () => void;
 }
@@ -22,10 +23,11 @@ interface PhotosProps {
 /** Varied aspect ratios for masonry feel before real images load */
 const ASPECTS = ['aspect-4/3', 'aspect-3/4', 'aspect-square', 'aspect-4/5', 'aspect-3/2', 'aspect-5/4'];
 
-export const Photos = ({ texts, onTextHover, onTextLeave }: PhotosProps) => {
+export const Photos = ({ texts, language, onTextHover, onTextLeave }: PhotosProps) => {
   const [active, setActive] = useState<Photo | null>(null);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
   const photos = photosData.photos as Photo[];
+  const altOf = (photo: Photo) => photo.alt[language];
 
   useEffect(() => {
     if (!active) return;
@@ -79,7 +81,7 @@ export const Photos = ({ texts, onTextHover, onTextLeave }: PhotosProps) => {
               {!broken && (
                 <img
                   src={photo.src}
-                  alt={photo.alt}
+                  alt={altOf(photo)}
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   onError={() => setFailed((prev) => ({ ...prev, [photo.id]: true }))}
@@ -149,7 +151,7 @@ export const Photos = ({ texts, onTextHover, onTextLeave }: PhotosProps) => {
                 ) : (
                   <img
                     src={active.src}
-                    alt={active.alt}
+                    alt={altOf(active)}
                     className="w-full max-h-[75vh] object-contain"
                   />
                 )}
@@ -159,7 +161,7 @@ export const Photos = ({ texts, onTextHover, onTextLeave }: PhotosProps) => {
                   {active.place}
                 </span>
                 <span className="opacity-40">{active.year}</span>
-                <span className="opacity-30 hidden sm:inline">— {active.alt}</span>
+                <span className="opacity-30 hidden sm:inline">— {altOf(active)}</span>
               </figcaption>
             </motion.figure>
           </motion.div>

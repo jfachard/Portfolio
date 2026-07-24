@@ -80,6 +80,7 @@ function App() {
 
         <Photos
           texts={t.photos}
+          language={language}
           onTextHover={handleTextHover}
           onTextLeave={handleTextLeave}
         />
