@@ -3,21 +3,21 @@
     {
       "id": "photo-01",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853910/1000001762_kimrph.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "c'est moi !",
       "place": "Nice",
       "year": "2022"
     },
     {
       "id": "photo-02",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853910/7267_qwgttz.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Il est beau le bateau !",
       "place": "Sète",
       "year": "2022"
     },
     {
       "id": "photo-03",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853909/fqs_2025-07-11_085130.673_kvegj7.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "lets go pour Paris",
       "place": "Nice",
       "year": "2025"
     },
@@ -31,56 +31,56 @@
     {
       "id": "photo-05",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853908/classicu_2025-07-26_042525.491_kusbuj.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Petite balade du soir",
       "place": "Nice",
       "year": "2025"
     },
     {
       "id": "photo-06",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853908/classicu_2025-07-25_224058.724_trgv8g.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Concert dans un bar",
       "place": "Nice",
       "year": "2025"
     },
     {
       "id": "photo-07",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853907/fqs_2025-08-03_223753.307_gzh6fi.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Stade de France",
       "place": "Paris",
       "year": "2025"
     },
     {
       "id": "photo-08",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853906/fqs_2026-02-23_155304CA99B5924897_jrova4.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "'Oh y a une roue'",
       "place": "Budapest",
       "year": "2026"
     },
     {
       "id": "photo-09",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853906/fqs_2026-07-22_20593086F1C6AA26C7_x2ro6s.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Conert The Weeknd",
       "place": "Nice",
       "year": "2026"
     },
     {
       "id": "photo-10",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853905/fqs_2026-07-22_211231BEA9E8EBB819_fjsw5x.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Concert The Weeknd",
       "place": "Nice",
       "year": "2026"
     },
     {
       "id": "photo-11",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853905/fqs_2026-07-05_204534A7D86CA1BFE3_gvdmvp.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Balade à Monaco",
       "place": "Monaco",
       "year": "2026"
     },
     {
       "id": "photo-12",
       "src": "https://res.cloudinary.com/dhqnltdwa/image/upload/v1784853904/IMG_7892_eiaucr.jpg",
-      "alt": "À remplacer — description courte",
+      "alt": "Concert The Weeknd",
       "place": "Nice",
       "year": "2026"
     }
