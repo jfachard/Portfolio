@@ -5,6 +5,7 @@
       "projects": "Projets",
       "skills": "Compétences",
       "experience": "Expérience",
+      "photos": "Photos",
       "contact": "Contact"
     },
     "hero": {
@@ -39,6 +40,10 @@
         "tools": "Outils & infra",
         "infra": "Infrastructure"
       }
+    },
+    "photos": {
+      "sectionLabel": "05 — Photos",
+      "hint": "Click →"
     },
     "experience": {
       "title": "Expérience",
@@ -97,6 +102,7 @@
       "projects": "Projects",
       "skills": "Skills",
       "experience": "Experience",
+      "photos": "Photos",
       "contact": "Contact"
     },
     "hero": {
@@ -131,6 +137,10 @@
         "tools": "Tools & infra",
         "infra": "Infrastructure"
       }
+    },
+    "photos": {
+      "sectionLabel": "05 — Photos",
+      "hint": "Click →"
     },
     "experience": {
       "title": "Experience",

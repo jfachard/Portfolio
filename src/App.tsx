@@ -6,6 +6,7 @@ import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
 import { Navigation } from './components/Navigation';
 import { Contact } from './components/Contact';
+import { Photos } from './components/Photos';
 import './index.css';
 import translations from '../language.json';
 
@@ -73,6 +74,12 @@ function App() {
 
         <Skills
           texts={t.skills}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
+
+        <Photos
+          texts={t.photos}
           onTextHover={handleTextHover}
           onTextLeave={handleTextLeave}
         />

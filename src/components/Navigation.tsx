@@ -7,6 +7,7 @@ interface NavigationProps {
     projects: string;
     skills: string;
     experience: string;
+    photos: string;
     contact: string;
   };
   currentLanguage: 'fr' | 'en';
@@ -26,7 +27,7 @@ export const Navigation = ({
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sectionIds = ['hero', 'projects', 'experience', 'skills', 'contact'];
+    const sectionIds = ['hero', 'projects', 'experience', 'skills', 'photos', 'contact'];
     const observers = sectionIds.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
@@ -55,6 +56,7 @@ export const Navigation = ({
     { id: 'projects', label: texts.projects },
     { id: 'experience', label: texts.experience },
     { id: 'skills', label: texts.skills },
+    { id: 'photos', label: texts.photos },
     { id: 'contact', label: texts.contact },
   ];
 
