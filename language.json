@@ -10,9 +10,10 @@
     },
     "hero": {
       "role": "Développeur Full-Stack — Vue.js / React / Node.js",
+      "status": "Nice — Alternance Promo+ · CDI dispo oct. 2026",
       "firstName": "Jean-Francis",
       "lastName": "Achard",
-      "description": "Je construis des applications web performantes et des systèmes temps réel du Wordle pour développeurs aux duels de code multijoueur.",
+      "description": "Je construis des applications web performantes et des systèmes temps réel — du Wordle pour développeurs aux duels de code multijoueur.",
       "cta": "Découvrir mes projets",
       "downloadCv": "Télécharger CV",
       "downloadCvAts": "Version ATS",
@@ -107,9 +108,10 @@
     },
     "hero": {
       "role": "Full-Stack Developer — Vue.js / React / Node.js",
+      "status": "Nice — Promo+ apprenticeship · Open to full-time from Oct 2026",
       "firstName": "Jean-Francis",
       "lastName": "Achard",
-      "description": "Building performant web applications and real-time systems from Wordle-style word games to live multiplayer coding duels.",
+      "description": "Building performant web applications and real-time systems — from Wordle-style word games to live multiplayer coding duels.",
       "cta": "Discover my projects",
       "downloadCv": "Download CV",
       "downloadCvAts": "ATS version",

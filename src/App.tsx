@@ -15,7 +15,7 @@ function App() {
   const t = translations[language];
 
   const [cursorState, setCursorState] = useState<{
-    variant: 'default' | 'text';
+    variant: 'default' | 'text' | 'pointer';
     height: number;
   }>({
     variant: 'default',

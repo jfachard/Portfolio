@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
+export type CursorVariant = 'default' | 'text' | 'pointer';
+
 interface CursorProps {
-  variant: 'default' | 'text';
+  variant: CursorVariant;
   height?: number;
 }
+
+const INTERACTIVE =
+  'a, button, [role="button"], [data-cursor="pointer"], summary, input, textarea, select, label[for]';
 
 export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   const [isPointerDevice, setIsPointerDevice] = useState(false);
   const [onAccent, setOnAccent] = useState(false);
+  const [overInteractive, setOverInteractive] = useState(false);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -29,6 +35,13 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
 
       const el = document.elementFromPoint(e.clientX, e.clientY);
       setOnAccent(!!el?.closest('#contact'));
+
+      const hit = el?.closest(INTERACTIVE) as HTMLElement | null;
+      const disabled =
+        hit?.hasAttribute('disabled') ||
+        hit?.getAttribute('aria-disabled') === 'true' ||
+        hit?.closest('[aria-disabled="true"]');
+      setOverInteractive(!!hit && !disabled);
     };
 
     window.addEventListener('mousemove', updateMousePosition);
@@ -36,6 +49,9 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
   }, [mouseX, mouseY, isPointerDevice]);
 
   if (!isPointerDevice) return null;
+
+  const effective: CursorVariant = overInteractive ? 'pointer' : variant;
+  const color = onAccent ? 'var(--bg-color)' : 'var(--accent)';
 
   return (
     <motion.div
@@ -45,15 +61,19 @@ export const Cursor = ({ variant, height = 24 }: CursorProps) => {
         y: cursorY,
         translateX: '-50%',
         translateY: '-50%',
-        backgroundColor: onAccent ? 'var(--bg-color)' : 'var(--accent)',
+        backgroundColor: effective === 'pointer' ? 'transparent' : color,
+        border:
+          effective === 'pointer'
+            ? `1.5px solid ${onAccent ? 'var(--bg-color)' : 'var(--accent)'}`
+            : '1.5px solid transparent',
       }}
       animate={{
-        width: variant === 'text' ? 2 : 18,
-        height: variant === 'text' ? height : 18,
-        borderRadius: variant === 'text' ? 0 : 9999,
-        opacity: variant === 'text' ? 0.95 : 0.85,
+        width: effective === 'text' ? 2 : effective === 'pointer' ? 44 : 18,
+        height: effective === 'text' ? height : effective === 'pointer' ? 44 : 18,
+        borderRadius: effective === 'text' ? 0 : 9999,
+        opacity: effective === 'pointer' ? 1 : effective === 'text' ? 0.95 : 0.85,
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
     />
   );
 };
