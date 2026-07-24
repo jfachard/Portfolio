@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { GitBranch } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface Project {
   id: string;
@@ -29,33 +28,27 @@ interface ProjectModalProps {
   };
 }
 
-export const ProjectModal = ({ project, isOpen, onClose, onTextHover, onTextLeave, texts }: ProjectModalProps) => {
+export const ProjectModal = ({
+  project,
+  isOpen,
+  onClose,
+  onTextHover,
+  onTextLeave,
+  texts,
+}: ProjectModalProps) => {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
+    if (isOpen) document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   return (
@@ -66,186 +59,113 @@ export const ProjectModal = ({ project, isOpen, onClose, onTextHover, onTextLeav
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-          style={{
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            backdropFilter: 'blur(10px)',
-          }}
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6 md:p-8"
+          style={{ backgroundColor: 'rgba(33, 35, 40, 0.85)', backdropFilter: 'blur(8px)' }}
           onClick={onClose}
         >
           <motion.div
-            layoutId={`project-${project.id}`}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto rounded-t-[12px] sm:rounded-[var(--radius)]"
             style={{
-              backgroundColor: 'rgba(20, 20, 30, 0.95)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backgroundColor: 'var(--bg-color)',
+              border: '1px solid oklch(94% 0.006 250 / .12)',
             }}
             onClick={(e) => e.stopPropagation()}
           >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 hover:scale-110"
-          style={{
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)',
-          }}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="var(--text-color)"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full"
+              style={{ background: 'var(--surface)' }}
+              aria-label="Close"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
 
-        {/* Image */}
-        <div className="relative w-full aspect-video overflow-hidden rounded-t-3xl">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-[rgba(20,20,30,0.95)] via-transparent to-transparent" />
-        </div>
-
-        {/* Content */}
-        <div className="p-8 md:p-12">
-          {/* Header */}
-          <div className="mb-6">
-            {project.featured && (
-              <div className="inline-block px-3 py-1 rounded-full text-xs font-medium mb-4"
+            <div className="relative w-full aspect-video overflow-hidden">
+              <div
+                className="stripe absolute inset-0"
                 style={{
-                  backgroundColor: 'rgba(245, 158, 11, 0.2)',
-                  border: '1px solid rgba(245, 158, 11, 0.5)',
-                  color: 'var(--text-color)',
+                  ['--s1' as string]: 'rgb(135 179 141 / .2)',
+                  ['--s2' as string]: 'rgb(135 179 141 / .07)',
                 }}
-              >
-                {texts.featuredProject}
-              </div>
-            )}
-            <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
-              style={{ color: 'var(--text-color)' }}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
-              {project.title}
-            </h2>
-            <p
-              className="text-xl md:text-2xl opacity-80"
-              style={{ color: 'var(--text-color)' }}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
-              {project.subtitle}
-            </p>
-          </div>
-
-          {/* Description */}
-          <div className="mb-8">
-            <p
-              className="text-lg leading-relaxed opacity-70"
-              style={{ color: 'var(--text-color)' }}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
-              {project.description}
-            </p>
-          </div>
-
-          {/* Tags */}
-          <div className="mb-8">
-            <h3
-              className="text-sm font-semibold mb-3 uppercase tracking-wider opacity-60"
-              style={{ color: 'var(--text-color)' }}
-            >
-              {texts.technologies}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {project.tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 rounded-xl text-sm font-medium"
-                  style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    color: 'var(--text-color)',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
+              />
+              <img
+                src={project.image}
+                alt={project.title}
+                className="relative w-full h-full object-cover"
+              />
             </div>
-          </div>
 
-          {/* Links */}
-          <div className="flex flex-wrap gap-4">
-            {project.id === 'the-last-key' ? (
-                    <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                    style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      color: 'var(--text-color)',
-                    }}
-                    onMouseEnter={onTextHover}
-                    onMouseLeave={onTextLeave}
-                    >
-                    <GitBranch className="w-5 h-5" />
-                    {texts.viewOnUnityVC}
-                    </a>
-                  ) : (
-                    <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                    style={{
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      color: 'var(--text-color)',
-                    }}
-                    onMouseEnter={onTextHover}
-                    onMouseLeave={onTextLeave}
-                    >
-                    <GitBranch className="w-5 h-5" />
-                    {texts.viewOnGithub}
-                    </a>
-                  )}
+            <div className="p-6 md:p-10">
+              {project.featured && (
+                <span className="tag opacity-40 mb-3 inline-block">{texts.featuredProject}</span>
+              )}
 
-            {project.demoUrl && (
-              <a
-                href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105"
-                style={{
-                  backgroundColor: 'rgba(245, 158, 11, 0.3)',
-                  border: '1px solid rgba(245, 158, 11, 0.5)',
-                  color: 'var(--text-color)',
-                }}
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-2"
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                {texts.liveDemo}
-              </a>
-            )}
-          </div>
-        </div>
+                {project.title}
+              </h2>
+              <p
+                className="text-base md:text-lg opacity-70 mb-6"
+                onMouseEnter={onTextHover}
+                onMouseLeave={onTextLeave}
+              >
+                {project.subtitle}
+              </p>
+
+              <p
+                className="text-[15px] leading-relaxed opacity-60 mb-8"
+                onMouseEnter={onTextHover}
+                onMouseLeave={onTextLeave}
+              >
+                {project.description}
+              </p>
+
+              <p className="section-eyebrow !mb-3">{texts.technologies}</p>
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="tag px-[9px] py-1 rounded-[5px]"
+                    style={{ background: 'var(--surface)' }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="cv-btn"
+                  onMouseEnter={onTextHover}
+                  onMouseLeave={onTextLeave}
+                >
+                  {project.id === 'the-last-key' ? texts.viewOnUnityVC : texts.viewOnGithub}
+                </a>
+                {project.demoUrl && (
+                  <a
+                    href={project.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-link self-center"
+                    onMouseEnter={onTextHover}
+                    onMouseLeave={onTextLeave}
+                  >
+                    {texts.liveDemo}
+                  </a>
+                )}
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}

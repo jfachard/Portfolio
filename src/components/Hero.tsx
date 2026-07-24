@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Download } from 'lucide-react';
+import { motion } from 'motion/react';
 import { NowPlaying } from './NowPlaying';
 
 interface HeroProps {
@@ -20,192 +19,135 @@ interface HeroProps {
 }
 
 export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) => {
-  const goToProjects = () => {
-    const element = document.getElementById('projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-6 md:px-12 lg:px-24">
-      <motion.div
-        key={texts.role}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-6xl w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-20"
-      >
-        {/* Left: text content */}
-        <div className="flex-1">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-xs md:text-sm uppercase tracking-widest mb-8 font-mono w-fit"
-            style={{ color: 'var(--text-secondary)' }}
+    <section id="hero" className="page-shell relative overflow-x-clip">
+      <div className="page-pad pt-8 pb-16 md:pt-10 md:pb-20 flex flex-col lg:flex-row gap-10 lg:gap-14 items-center lg:items-end relative">
+        <motion.div
+          key={texts.role}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="flex-1 min-w-0 relative z-10"
+        >
+          <p
+            className="section-eyebrow mb-5 md:mb-7"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
           >
             {texts.role}
-          </motion.p>
+          </p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+          <h1
+            className="font-display leading-[0.92] m-0 w-fit"
+            style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
-            className="text-5xl sm:text-6xl md:text-8xl font-bold mb-4 leading-none w-fit"
-            style={{ color: 'var(--text-color)' }}
           >
             {texts.firstName}
-          </motion.h1>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
+          </h1>
+          <h1
+            className="font-display leading-[0.92] m-0 mb-7 md:mb-8 opacity-[0.32] w-fit"
+            style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
-            className="text-5xl sm:text-6xl md:text-8xl font-bold opacity-30 mb-8 md:mb-10 leading-none w-fit"
-            style={{ color: 'var(--text-secondary)' }}
           >
             {texts.lastName}
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-lg md:text-xl max-w-xl mb-10 leading-relaxed"
-            style={{ color: 'var(--text-secondary)' }}
+          <p
+            className="text-[17px] md:text-[19px] leading-[1.6] max-w-[520px] opacity-70 mb-8 md:mb-9"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
           >
             {texts.description}
-          </motion.p>
+          </p>
 
-          <div className="flex flex-wrap items-center gap-4 mb-8">
-            <motion.a
+          <div className="flex flex-wrap items-center gap-6 md:gap-7">
+            <a
               href="https://github.com/jfachard"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="icon-link"
-            >
-              <Github size={32} />
-            </motion.a>
-
-            <motion.a
-              href="https://www.linkedin.com/in/jeanfrancis-achard/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="icon-link"
-            >
-              <Linkedin size={32} />
-            </motion.a>
-
-            <motion.a
-              href={`/CV_visual_${language.toUpperCase()}.pdf`}
-              download
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.8 }}
-              className="cv-btn flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium"
+              className="text-link"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
-              <Download size={16} />
-              {texts.downloadCv}
-            </motion.a>
-
-            <motion.a
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/jeanfrancis-achard/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link"
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+            >
+              LinkedIn
+            </a>
+            <a
+              href={`/CV_visual_${language.toUpperCase()}.pdf`}
+              download
+              className="cv-btn"
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+            >
+              {texts.downloadCv} ↓
+            </a>
+            <a
               href={`/CV_${language.toUpperCase()}.pdf`}
               download
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="icon-link text-xs font-medium"
+              className="text-[12px] font-medium opacity-45 hover:opacity-80 transition-opacity"
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
             >
               {texts.downloadCvAts}
-            </motion.a>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          >
-            <motion.button
-              onClick={goToProjects}
-              className="inline-flex items-center gap-3 text-lg md:text-xl font-medium group cursor-pointer"
-              style={{ color: 'var(--text-color)' }}
-            >
-              <span>{texts.cta}</span>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                style={{ color: 'var(--accent)' }}
-              >
-                <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform duration-300" />
-              </motion.span>
-            </motion.button>
-          </motion.div>
-
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.9, duration: 0.8 }}
-            className="h-px mt-10 max-w-md"
-            style={{ background: 'linear-gradient(to right, rgba(245, 158, 11, 0.5), transparent)' }}
-          />
-        </div>
-
-        {/* Right: tilted photo card — desktop only */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.9 }}
-          className="hidden lg:block shrink-0"
-        >
-          <div className="relative w-72 h-96">
-            {/* Back layers for depth */}
-            <div
-              className="absolute inset-0 rounded-2xl border border-amber-500/15"
-              style={{ transform: 'rotate(10deg) translate(10px, 10px)' }}
-            />
-            <div
-              className="absolute inset-0 rounded-2xl border border-amber-500/25"
-              style={{ transform: 'rotate(6deg) translate(6px, 6px)' }}
-            />
-            {/* Main photo card */}
-            <div
-              className="absolute inset-0 rounded-2xl overflow-hidden border-2 border-amber-500/50 shadow-2xl"
-              style={{
-                transform: 'rotate(-3deg)',
-                boxShadow: '0 25px 60px -10px rgba(245, 158, 11, 0.25)'
-              }}
-            >
-              <img
-                src="/images/Me.JPG"
-                alt="Jean-Francis Achard"
-                className="w-full h-full object-cover object-top"
-                loading="eager"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-[#111008]/50 via-transparent to-transparent" />
-            </div>
+            </a>
           </div>
         </motion.div>
-      </motion.div>
 
-      {/* Now Playing Widget */}
-      <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40">
+        {/* Photo — cadre sage offset, sans stripe placeholder */}
+        <motion.div
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2, duration: 0.75 }}
+          className="relative shrink-0 self-center lg:self-end w-[200px] h-[260px] sm:w-[240px] sm:h-[310px] lg:w-[300px] lg:h-[390px] xl:w-[320px] xl:h-[420px] mb-2.5 mr-2.5"
+        >
+          {/* cadre arrière */}
+          <div
+            className="absolute inset-0 rounded-(--radius) border border-(--accent)/35"
+            style={{ transform: 'translate(10px, 10px)' }}
+            aria-hidden
+          />
+          {/* accent plein léger */}
+          <div
+            className="absolute inset-0 rounded-(--radius) bg-(--accent)/10"
+            style={{ transform: 'translate(10px, 10px)' }}
+            aria-hidden
+          />
+
+          <div
+            className="relative w-full h-full rounded-(--radius) overflow-hidden"
+            style={{
+              boxShadow: '0 24px 48px -20px rgb(0 0 0 / 0.55)',
+            }}
+          >
+            <img
+              src="/images/Me.JPG"
+              alt="Jean-Francis Achard"
+              className="w-full h-full object-cover object-top"
+              loading="eager"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  'linear-gradient(to top, rgb(33 35 40 / 0.35), transparent 35%)',
+              }}
+            />
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="now-playing-fixed fixed bottom-24 right-4 md:bottom-8 md:right-8 z-40">
         <NowPlaying texts={{ nowPlaying: texts.nowPlaying, lastPlayed: texts.lastPlayed }} />
       </div>
     </section>

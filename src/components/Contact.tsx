@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, ArrowUp, Instagram } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface ContactProps {
   texts: {
@@ -15,156 +14,67 @@ interface ContactProps {
 }
 
 export const Contact = ({ texts, onTextHover, onTextLeave }: ContactProps) => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <section id="contact" className="flex items-center justify-center px-6 py-16 md:py-20 pb-28 md:pb-20">
-      <div className="max-w-6xl w-full">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <section
+      id="contact"
+      className="page-pad py-14 md:py-16 mt-0"
+      style={{ background: 'var(--accent)', color: 'var(--bg-color)' }}
+    >
+      <div className="page-shell">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-16"
+          className="font-display m-0 mb-8 md:mb-9 leading-none"
+          style={{ fontSize: 'clamp(2.5rem, 7vw, 4rem)' }}
+          onMouseEnter={onTextHover}
+          onMouseLeave={onTextLeave}
         >
-          <motion.h2
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#f5f0e8] mb-8 w-fit"
+          {texts.title}
+        </motion.h2>
+
+        <div className="flex flex-wrap gap-6 md:gap-8 mb-10">
+          <a
+            href={`mailto:${texts.email}`}
+            className="text-[15px] font-semibold opacity-80 hover:opacity-100 transition-opacity"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
           >
-            {texts.title}
-          </motion.h2>
-          
-          {/* Ligne horizontale */}
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="h-px bg-linear-to-r from-[#f59e0b] via-[#f59e0b]/50 to-transparent"
-          />
-        </motion.div>
-
-        {/* Content Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-20"
-        >
-          {/* Email */}
-          <div>
-            <p className="text-[#9c9488] uppercase tracking-wider text-sm font-mono mb-4">
-              {texts.emailLabel}
-            </p>
-            <motion.a
-              href={`mailto:${texts.email}`}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-              whileHover={{ x: 5 }}
-              className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
-                       hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
-            >
-              <Mail size={24} className="text-[#f59e0b]" />
-              <span className="font-medium">{texts.email}</span>
-            </motion.a>
-          </div>
-
-          {/* Social Links */}
-          <div>
-            <p className="text-[#9c9488] uppercase tracking-wider text-sm font-mono mb-4">
-              {texts.socialLabel}
-            </p>
-            <div className="flex flex-col gap-4">
-              <motion.a
-                href="https://github.com/jfachard"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={onTextHover}
-                onMouseLeave={onTextLeave}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
-                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
-              >
-                <Github size={24} className="text-[#f59e0b]" />
-                <span className="font-medium">GitHub</span>
-              </motion.a>
-
-              <motion.a
-                href="https://www.linkedin.com/in/jeanfrancis-achard/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={onTextHover}
-                onMouseLeave={onTextLeave}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
-                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
-              >
-                <Linkedin size={24} className="text-[#f59e0b]" />
-                <span className="font-medium">LinkedIn</span>
-              </motion.a>
-
-              <motion.a
-                href="https://www.instagram.com/jf_achard/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onMouseEnter={onTextHover}
-                onMouseLeave={onTextLeave}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-3 text-[#f5f0e8] text-xl md:text-2xl 
-                         hover:text-[#f59e0b] transition-colors group w-fit break-all md:break-normal"
-              >
-                <Instagram size={24} className="text-[#f59e0b]" />
-                <span className="font-medium">Instagram</span>
-              </motion.a>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Back to Top Button */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex justify-center"
-        >
-          <motion.button
-            onClick={scrollToTop}
+            {texts.email}
+          </a>
+          <a
+            href="https://github.com/jfachard"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[15px] font-semibold opacity-80 hover:opacity-100 transition-opacity"
             onMouseEnter={onTextHover}
             onMouseLeave={onTextLeave}
-            whileHover={{ y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex flex-col items-center gap-2 text-[#9c9488] hover:text-[#f59e0b] 
-                     transition-colors group"
           >
-            <div className="w-12 h-12 rounded-full border-2 border-[#3d3628] 
-                          group-hover:border-[#f59e0b] flex items-center justify-center 
-                          transition-colors">
-              <ArrowUp size={20} />
-            </div>
-            <span className="text-sm font-mono uppercase tracking-wider">
-              {texts.backToTop}
-            </span>
-          </motion.button>
-        </motion.div>
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jeanfrancis-achard/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[15px] font-semibold opacity-80 hover:opacity-100 transition-opacity"
+            onMouseEnter={onTextHover}
+            onMouseLeave={onTextLeave}
+          >
+            LinkedIn
+          </a>
+          <a
+            href="https://www.instagram.com/jf_achard/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[15px] font-semibold opacity-80 hover:opacity-100 transition-opacity"
+            onMouseEnter={onTextHover}
+            onMouseLeave={onTextLeave}
+          >
+            Instagram
+          </a>
+        </div>
 
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-10 md:mt-20 text-center"
-        >
-          <p className="text-[#9c9488] text-sm font-mono">
-            {texts.footer}
-          </p>
-        </motion.div>
+        <p className="font-mono text-[11px] opacity-50 m-0">{texts.footer}</p>
       </div>
     </section>
   );

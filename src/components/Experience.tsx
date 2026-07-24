@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { motion } from 'motion/react';
 
 interface ExperienceProps {
   texts: {
     title: string;
+    sectionLabel?: string;
     experiences: Array<{
       company: string;
       position: string;
@@ -18,136 +18,86 @@ interface ExperienceProps {
 }
 
 export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps) => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section id="experience" className="flex flex-col items-center justify-center px-6 py-16 md:py-20">
-      <div className="max-w-5xl mx-auto w-full">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8 md:mb-14 flex justify-center"
-        >
-          <h2
-            className="text-4xl sm:text-5xl md:text-8xl font-bold mb-4 md:mb-12 text-center"
-            onMouseEnter={onTextHover}
-            onMouseLeave={onTextLeave}
-          >
-            {texts.title}
-          </h2>
-        </motion.div>
+    <section id="experience" className="page-shell page-pad pb-(--section-pad)">
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="section-eyebrow"
+        onMouseEnter={onTextHover}
+        onMouseLeave={onTextLeave}
+      >
+        {texts.sectionLabel ?? `03 — ${texts.title}`}
+      </motion.p>
 
-        {/* Timeline */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative"
-        >
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-0.5 bg-linear-to-b from-amber-500/50 via-amber-500/30 to-transparent" />
+      <div className="relative pl-8 max-w-3xl">
+        <div className="absolute left-[5px] top-1.5 bottom-1.5 w-px bg-current opacity-20" />
 
-          {/* Experience items */}
-          <div className="space-y-12">
-            {texts.experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="relative pl-8 md:pl-20"
-              >
-                {/* Timeline dot */}
-                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 rounded-full bg-amber-500 border-4 border-[#111008]" />
+        <div className="flex flex-col gap-7">
+          {texts.experiences.map((exp, index) => (
+            <motion.div
+              key={`${exp.company}-${exp.period}`}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ delay: index * 0.08 }}
+              className="relative"
+            >
+              <div
+                className="absolute -left-8 top-1.5 w-[10px] h-[10px] rounded-full"
+                style={{
+                  background:
+                    index === 0 ? 'var(--accent)' : 'rgb(135 179 141 / 0.4)',
+                }}
+              />
 
-                {/* Card */}
-                <motion.div
-                  whileHover={{
-                    scale: 1.02,
-                    backgroundColor: 'rgba(51, 65, 85, 0.6)',
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="bg-[#2a2518]/40 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-[#3d3628]/30"
+              <div className="flex justify-between items-baseline flex-wrap gap-2">
+                <h3
+                  className="text-[18px] font-bold leading-none m-0"
+                  onMouseEnter={onTextHover}
+                  onMouseLeave={onTextLeave}
                 >
-                  {/* Company & Position */}
-                  <div className="mb-4">
-                    <h3
-                      className="text-xl md:text-2xl font-bold text-[#f5f0e8] mb-2 flex items-center gap-2 w-fit"
-                      onMouseEnter={onTextHover}
-                      onMouseLeave={onTextLeave}
+                  {exp.position} — {exp.company}
+                </h3>
+                <span className="font-mono text-[12px] font-medium opacity-50">
+                  {exp.period}
+                </span>
+              </div>
+
+              <p className="font-mono text-[11px] opacity-40 mt-2 mb-0">
+                {exp.location}
+              </p>
+
+              <ul className="m-0 mt-3 pl-3 list-none space-y-1.5 border-l-2 border-dashed border-[oklch(94%_0.006_250/0.3)]">
+                {exp.description.map((item) => (
+                  <li
+                    key={item}
+                    className="text-[13px] leading-[1.6] opacity-50"
+                    onMouseEnter={onTextHover}
+                    onMouseLeave={onTextLeave}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {exp.technologies && exp.technologies.length > 0 && (
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="tag px-[9px] py-1 rounded-[5px]"
+                      style={{ background: 'var(--surface)' }}
                     >
-                      <Briefcase size={24} className="text-amber-400" />
-                      {exp.position}
-                    </h3>
-                    <p
-                      className="text-base md:text-xl text-amber-400 font-medium w-fit"
-                      onMouseEnter={onTextHover}
-                      onMouseLeave={onTextLeave}
-                    >
-                      {exp.company}
-                    </p>
-                  </div>
-
-                  {/* Period & Location */}
-                  <div className="flex flex-wrap gap-4 mb-4 text-[#9c9488] text-sm">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} />
-                      <span>{exp.period}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} />
-                      <span>{exp.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Description */}
-                  <ul className="space-y-2 mb-4 text-[#c8c0a8]">
-                    {exp.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-amber-400 mt-1.5">"</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Technologies */}
-                  {exp.technologies && exp.technologies.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-4">
-                        {exp.technologies.map((tech, i) => (
-                        <span
-                            key={i}
-                            className="px-3 py-1 bg-amber-500/10 text-amber-300 rounded-md
-                                    text-xs font-medium border border-amber-500/20"
-                        >
-                            {tech}
-                        </span>
-                        ))}
-                    </div>
-                    )}
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

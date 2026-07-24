@@ -6,20 +6,19 @@ import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
 import { Navigation } from './components/Navigation';
 import { Contact } from './components/Contact';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
 import './index.css';
 import translations from '../language.json';
 
 function App() {
   const [language, setLanguage] = useState<'fr' | 'en'>('fr');
   const t = translations[language];
-  
-  const [cursorState, setCursorState] = useState<{ 
-    variant: 'default' | 'text', 
-    height: number 
+
+  const [cursorState, setCursorState] = useState<{
+    variant: 'default' | 'text';
+    height: number;
   }>({
     variant: 'default',
-    height: 0
+    height: 0,
   });
 
   const handleTextHover = (e: React.MouseEvent<HTMLElement>) => {
@@ -27,7 +26,7 @@ function App() {
     const fontSize = parseFloat(style.fontSize);
     setCursorState({
       variant: 'text',
-      height: fontSize * 1.2
+      height: fontSize * 1.2,
     });
   };
 
@@ -36,58 +35,54 @@ function App() {
   };
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'fr' ? 'en' : 'fr');
+    setLanguage((prev) => (prev === 'fr' ? 'en' : 'fr'));
   };
 
   return (
     <>
       <Cursor variant={cursorState.variant} height={cursorState.height} />
-      
+
       <Navigation
         texts={t.navigation}
-        onTextHover={handleTextHover}
-        onTextLeave={handleTextLeave}
-      />
-      
-      <LanguageSwitcher
         currentLanguage={language}
         toggleLanguage={toggleLanguage}
-        onMouseEnter={handleTextHover}
-        onMouseLeave={handleTextLeave}
-      />
-
-      {/* Toutes les sections sur la même page */}
-      <Hero
-        texts={t.hero}
-        language={language}
-        onTextHover={handleTextHover}
-        onTextLeave={handleTextLeave}
-      />
-      
-      <Projects
-        texts={t.projects}
-        language={language}
         onTextHover={handleTextHover}
         onTextLeave={handleTextLeave}
       />
 
-      <Skills
-        texts={t.skills}
-        onTextHover={handleTextHover}
-        onTextLeave={handleTextLeave}
-      />
-      
-      <Experience
-        texts={t.experience}
-        onTextHover={handleTextHover}
-        onTextLeave={handleTextLeave}
-      />
+      <main>
+        <Hero
+          texts={t.hero}
+          language={language}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
 
-      <Contact
-        texts={t.contact}
-        onTextHover={handleTextHover}
-        onTextLeave={handleTextLeave}
-      />
+        <Projects
+          texts={t.projects}
+          language={language}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
+
+        <Experience
+          texts={t.experience}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
+
+        <Skills
+          texts={t.skills}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
+
+        <Contact
+          texts={t.contact}
+          onTextHover={handleTextHover}
+          onTextLeave={handleTextLeave}
+        />
+      </main>
     </>
   );
 }

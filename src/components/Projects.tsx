@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { LayoutGroup } from 'framer-motion';
+import { useState, useEffect, useMemo } from 'react';
+import { LayoutGroup } from 'motion/react';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
 
@@ -24,6 +24,7 @@ interface ProjectsProps {
     viewOnGithub: string;
     viewOnUnityVC: string;
     liveDemo: string;
+    sectionLabel?: string;
   };
   language: 'fr' | 'en';
   onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
@@ -48,6 +49,15 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
     loadProjects();
   }, [language]);
 
+  const { hero, rest } = useMemo(() => {
+    const featured = projects.find((p) => p.featured) ?? projects[0];
+    if (!featured) return { hero: null, rest: [] as Project[] };
+    return {
+      hero: featured,
+      rest: projects.filter((p) => p.id !== featured.id),
+    };
+  }, [projects]);
+
   const handleCardClick = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -60,30 +70,45 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
 
   return (
     <LayoutGroup>
-      <div id="projects" className="flex flex-col items-center justify-center px-6 py-16 md:py-20">
-        <h2
-          className="text-4xl sm:text-5xl md:text-8xl font-bold mb-8 md:mb-16 text-center w-fit"
-          style={{ color: 'var(--text-color)' }}
+      <section id="projects" className="page-shell page-pad pb-(--section-pad)">
+        <p
+          className="section-eyebrow"
           onMouseEnter={onTextHover}
           onMouseLeave={onTextLeave}
         >
-          {texts.projects}
-        </h2>
+          {texts.sectionLabel ?? `02 — ${texts.projects}`}
+        </p>
 
-        {/* Projects Grid */}
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onClick={() => handleCardClick(project)}
-              onTextHover={onTextHover}
-              onTextLeave={onTextLeave}
-              featuredText={texts.featuredBadge}
-            />
-          ))}
-        </div>
-      </div>
+        {hero && (
+          <ProjectCard
+            project={hero}
+            index={0}
+            variant="hero"
+            onClick={() => handleCardClick(hero)}
+            onTextHover={onTextHover}
+            onTextLeave={onTextLeave}
+            featuredText={texts.featuredBadge}
+            liveDemoText={texts.liveDemo}
+          />
+        )}
+
+        {rest.length > 0 && (
+          <div className="mt-6 sm:mt-8 md:mt-10 border-t border-[oklch(94%_0.006_250/0.12)]">
+            {rest.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index + 1}
+                variant="compact"
+                onClick={() => handleCardClick(project)}
+                onTextHover={onTextHover}
+                onTextLeave={onTextLeave}
+                featuredText={texts.featuredBadge}
+              />
+            ))}
+          </div>
+        )}
+      </section>
 
       <ProjectModal
         project={selectedProject}

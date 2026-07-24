@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'motion/react';
 
 interface Track {
   name: string;
@@ -20,7 +20,7 @@ interface NowPlayingProps {
 export const NowPlaying = ({ texts }: NowPlayingProps) => {
   const [track, setTrack] = useState<Track | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [onFooter, setOnFooter] = useState(false);
 
   const fetchNowPlaying = async () => {
     try {
@@ -36,9 +36,12 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
 
       if (recentTrack) {
         const isPlaying = recentTrack['@attr']?.nowplaying === 'true';
-        const image = recentTrack.image?.find((img: { size: string; '#text': string }) => img.size === 'large')?.['#text']
-          || recentTrack.image?.[2]?.['#text']
-          || '';
+        const image =
+          recentTrack.image?.find((img: { size: string; '#text': string }) => img.size === 'large')?.[
+            '#text'
+          ] ||
+          recentTrack.image?.[2]?.['#text'] ||
+          '';
 
         setTrack({
           name: recentTrack.name,
@@ -46,7 +49,7 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
           album: recentTrack.album?.['#text'] || '',
           image,
           isPlaying,
-          url: recentTrack.url
+          url: recentTrack.url,
         });
       }
     } catch (error) {
@@ -62,110 +65,86 @@ export const NowPlaying = ({ texts }: NowPlayingProps) => {
     return () => clearInterval(interval);
   }, []);
 
-  if (loading || !track) {
-    return null;
-  }
+  useEffect(() => {
+    const update = () => {
+      const contact = document.getElementById('contact');
+      if (!contact) return;
+      const rect = contact.getBoundingClientRect();
+      // widget fixed en bas → footer dès que le sage couvre cette zone
+      setOnFooter(rect.top < window.innerHeight - 48);
+    };
 
-  const circularText = track.isPlaying ? texts.nowPlaying : texts.lastPlayed;
-  const repeatedText = `${circularText} · `.repeat(4);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, []);
 
-  const albumArt = track.image ? (
-    <img src={track.image} alt={`${track.album} cover`} className="album-cover" loading="lazy" />
-  ) : (
-    <div className="album-cover-placeholder">
-      <svg viewBox="0 0 24 24" fill="currentColor" className="music-icon">
-        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-      </svg>
-    </div>
-  );
-
-  const marqueeText = `${track.name}  ·  ${track.name}  ·  `;
+  if (loading || !track) return null;
 
   return (
     <motion.a
       href={track.url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ delay: 1, duration: 0.6 }}
-      onMouseEnter={() => setShowTooltip(true)}
-      onMouseLeave={() => setShowTooltip(false)}
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.8, duration: 0.5 }}
+      className="inline-flex items-center gap-2.5 rounded-full py-2 pl-2 pr-4 max-w-[min(280px,85vw)] transition-colors duration-200"
+      style={
+        onFooter
+          ? {
+              background: 'var(--bg-color)',
+              border: '1px solid rgb(33 35 40 / 0.2)',
+              color: 'var(--text-color)',
+            }
+          : {
+              background: 'oklch(94% 0.006 250 / .06)',
+              border: '1px solid oklch(94% 0.006 250 / .15)',
+              color: 'var(--text-color)',
+            }
+      }
     >
-      {/* Desktop: full circular vinyl widget */}
-      <div className="now-playing-widget hidden lg:flex">
-        <div className="rotating-text">
-          <svg viewBox="0 0 100 100" className="circular-text-svg">
-            <defs>
-              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-            </defs>
-            <text className="circular-text">
-              <textPath href="#circlePath">{repeatedText}</textPath>
-            </text>
-          </svg>
-        </div>
-        <div className="album-cover-container">
-          {albumArt}
-          {track.isPlaying && (
-            <div className="playing-indicator">
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
-            </div>
-          )}
-        </div>
-
-        {/* Custom tooltip */}
-        <AnimatePresence>
-          {showTooltip && (
-            <motion.div
-              initial={{ opacity: 0, y: 6, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 6, scale: 0.95 }}
-              transition={{ duration: 0.15 }}
-              className="absolute bottom-full right-0 mb-3 min-w-[180px] max-w-60 p-3 rounded-2xl pointer-events-none"
-              style={{
-                background: 'rgba(15,23,42,0.95)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 20px 40px -8px rgba(0,0,0,0.5)',
-              }}
-            >
-              <p className="text-[#f5f0e8] text-sm font-semibold truncate">{track.name}</p>
-              <p className="text-[#9c9488] text-xs truncate mt-0.5">{track.artist}</p>
-              {track.album && (
-                <p className="text-[#7a7262] text-xs truncate mt-0.5">{track.album}</p>
-              )}
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="w-[34px] h-[34px] rounded-full overflow-hidden shrink-0 relative">
+        {track.image ? (
+          <img
+            src={track.image}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="stripe w-full h-full"
+            style={{
+              ['--s1' as string]: 'rgb(135 179 141 / .35)',
+              ['--s2' as string]: 'rgb(135 179 141 / .1)',
+            }}
+          />
+        )}
       </div>
 
-      {/* Mobile: compact pill */}
-      <div className="lg:hidden flex items-center gap-2 bg-[#1c1810]/90 backdrop-blur-lg rounded-full pl-1 pr-3 py-1 border border-[#3d3628]/30 max-w-[180px]">
-        <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 relative">
-          {albumArt}
+      <div className="min-w-0 leading-tight">
+        <p
+          className="font-mono text-[11px] font-semibold uppercase tracking-[0.06em] m-0 flex items-center gap-2"
+          style={{ color: 'var(--accent)' }}
+        >
+          {track.isPlaying ? texts.nowPlaying : texts.lastPlayed}
           {track.isPlaying && (
-            <div className="playing-indicator">
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
-            </div>
+            <span className="playing-bars" aria-hidden>
+              <span className="bar" />
+              <span className="bar" />
+              <span className="bar" />
+            </span>
           )}
-        </div>
-        <div className="overflow-hidden flex-1 min-w-0">
-          {track.isPlaying ? (
-            <div className="overflow-hidden">
-              <span className="animate-marquee text-[#f5f0e8] text-xs font-semibold leading-tight">
-                {marqueeText}
-              </span>
-            </div>
-          ) : (
-            <p className="text-[#f5f0e8] text-xs font-semibold truncate leading-tight">{track.name}</p>
-          )}
-          <p className="text-[#9c9488] text-xs truncate leading-tight">{track.artist}</p>
-        </div>
+        </p>
+        <p className="text-[13px] font-medium m-0 truncate">
+          {track.name}{' '}
+          <span className="opacity-60">— {track.artist}</span>
+        </p>
       </div>
     </motion.a>
   );

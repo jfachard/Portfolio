@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Home, FolderGit2, Award, Briefcase, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface NavigationProps {
   texts: {
@@ -10,156 +9,160 @@ interface NavigationProps {
     experience: string;
     contact: string;
   };
+  currentLanguage: 'fr' | 'en';
+  toggleLanguage: () => void;
   onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
   onTextLeave: () => void;
 }
 
-export const Navigation = ({ texts, onTextHover, onTextLeave }: NavigationProps) => {
+export const Navigation = ({
+  texts,
+  currentLanguage,
+  toggleLanguage,
+  onTextHover,
+  onTextLeave,
+}: NavigationProps) => {
   const [activeSection, setActiveSection] = useState('hero');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sectionIds = ['hero', 'projects', 'skills', 'experience', 'contact'];
-    const observers = sectionIds.map(id => {
+    const sectionIds = ['hero', 'projects', 'experience', 'skills', 'contact'];
+    const observers = sectionIds.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
       const observer = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0, rootMargin: '-10% 0px -85% 0px' }
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { threshold: 0, rootMargin: '-12% 0px -72% 0px' }
       );
       observer.observe(el);
       return observer;
     });
-    return () => observers.forEach(o => o?.disconnect());
+    return () => observers.forEach((o) => o?.disconnect());
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', menuOpen);
+    return () => {
+      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
+    };
+  }, [menuOpen]);
+
   const navItems = [
-    { id: 'hero', label: texts.home, number: '01', icon: Home },
-    { id: 'projects', label: texts.projects, number: '02', icon: FolderGit2 },
-    { id: 'skills', label: texts.skills, number: '03', icon: Award },
-    { id: 'experience', label: texts.experience, number: '04', icon: Briefcase },
-    { id: 'contact', label: texts.contact, number: '05', icon: Mail }
+    { id: 'projects', label: texts.projects },
+    { id: 'experience', label: texts.experience },
+    { id: 'skills', label: texts.skills },
+    { id: 'contact', label: texts.contact },
   ];
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+    setMenuOpen(false);
   };
 
   return (
     <>
-      {/* Desktop Navigation - Latérale gauche */}
-      <motion.nav
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="fixed left-12 top-1/2 -translate-y-1/2 z-50 hidden lg:block"
-      >
-        {/* Ligne verticale */}
-        <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-transparent 
-                      via-[#f59e0b]/50 to-transparent" />
-        
-        <ul className="flex flex-col gap-12 relative">
-          {navItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.li
+      <header className="page-shell page-pad relative z-60 flex items-center justify-end pt-5 md:pt-6">
+        <div className="flex items-center gap-5 md:gap-8">
+          <nav className="hidden md:flex items-center gap-9">
+            {navItems.map((item) => (
+              <button
                 key={item.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                className="relative"
+                onClick={() => scrollToSection(item.id)}
+                onMouseEnter={onTextHover}
+                onMouseLeave={onTextLeave}
+                className={`text-[13px] font-medium uppercase tracking-[0.08em] transition-opacity ${
+                  activeSection === item.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+                }`}
               >
-                <motion.button
-                  onClick={() => scrollToSection(item.id)}
-                  onMouseEnter={onTextHover}
-                  onMouseLeave={onTextLeave}
-                  whileHover={{ x: 10 }}
-                  className="group flex items-center gap-4"
-                >
-                  {/* Numéro */}
-                  <span className="text-[#f59e0b] font-mono text-sm font-bold w-10 text-right">
-                    {item.number}
-                  </span>
+                {item.label}
+              </button>
+            ))}
+          </nav>
 
-                  {/* Icône sur la ligne */}
-                  <div className="relative flex items-center justify-center w-6 h-6">
-                    <Icon
-                      size={18}
-                      className={`transition-all duration-300 group-hover:scale-110
-                               ${activeSection === item.id ? 'text-[#f59e0b]' : 'text-[#9c9488] group-hover:text-[#f59e0b]'}`}
-                    />
-                  </div>
+          <div
+            className="flex items-center gap-0 font-mono text-[11px] font-semibold tracking-[0.06em] uppercase rounded-full border border-[oklch(94%_0.006_250/0.18)] p-0.5"
+            role="group"
+            aria-label="Language"
+          >
+            <button
+              onClick={() => currentLanguage !== 'fr' && toggleLanguage()}
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+              className={`px-2.5 py-1 rounded-full transition-colors ${
+                currentLanguage === 'fr'
+                  ? 'bg-(--accent) text-(--bg-color)'
+                  : 'opacity-45 hover:opacity-80'
+              }`}
+              aria-pressed={currentLanguage === 'fr'}
+            >
+              FR
+            </button>
+            <button
+              onClick={() => currentLanguage !== 'en' && toggleLanguage()}
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+              className={`px-2.5 py-1 rounded-full transition-colors ${
+                currentLanguage === 'en'
+                  ? 'bg-(--accent) text-(--bg-color)'
+                  : 'opacity-45 hover:opacity-80'
+              }`}
+              aria-pressed={currentLanguage === 'en'}
+            >
+              EN
+            </button>
+          </div>
 
-                  {/* Label qui apparaît au hover */}
-                  <motion.span
-                    initial={{ opacity: 0, width: 0 }}
-                    className={`text-sm font-medium whitespace-nowrap overflow-hidden
-                             opacity-0 group-hover:opacity-100 group-hover:w-auto transition-all
-                             duration-300 group-hover:text-[#f59e0b]
-                             ${activeSection === item.id ? 'text-[#f59e0b]' : 'text-[#c8c0a8]'}`}
-                  >
-                    {item.label}
-                  </motion.span>
-                </motion.button>
-              </motion.li>
-            );
-          })}
-        </ul>
-      </motion.nav>
-
-      {/* Mobile Navigation - Bottom Fixed (iOS 26 Liquid Glass) */}
-      <motion.nav
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 lg:hidden"
-      >
-        <div
-          className="rounded-full px-2 py-2 shadow-2xl shadow-black/40"
-          style={{
-            background: 'rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(40px)',
-            WebkitBackdropFilter: 'blur(40px)',
-            border: '1px solid rgba(255,255,255,0.12)',
-          }}
-        >
-          <ul className="flex items-center gap-1">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isActive = activeSection === item.id;
-              return (
-                <li key={item.id}>
-                  <motion.button
-                    onClick={() => scrollToSection(item.id)}
-                    whileTap={{ scale: 0.85 }}
-                    className="relative p-3 rounded-full"
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="active-pill"
-                        className="absolute inset-0 rounded-full"
-                        style={{
-                          background: 'rgba(255,255,255,0.14)',
-                          border: '1px solid rgba(255,255,255,0.2)',
-                        }}
-                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      />
-                    )}
-                    <Icon
-                      size={20}
-                      className={`relative z-10 transition-colors duration-200 ${
-                        isActive ? 'text-[#f59e0b]' : 'text-[#9c9488]'
-                      }`}
-                    />
-                  </motion.button>
-                </li>
-              );
-            })}
-          </ul>
+          <button
+            className="md:hidden relative w-8 h-8 flex flex-col justify-center gap-1.5"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+          >
+            <span
+              className={`block h-px w-5 bg-(--text-color) transition-transform origin-center ${
+                menuOpen ? 'translate-y-[3.5px] rotate-45' : ''
+              }`}
+            />
+            <span
+              className={`block h-px w-5 bg-(--text-color) transition-transform origin-center ${
+                menuOpen ? '-translate-y-[3.5px] -rotate-45' : ''
+              }`}
+            />
+          </button>
         </div>
-      </motion.nav>
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-(--bg-color) md:hidden flex flex-col justify-center px-8 gap-8"
+          >
+            {navItems.map((item, i) => (
+              <motion.button
+                key={item.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i }}
+                onClick={() => scrollToSection(item.id)}
+                onMouseEnter={onTextHover}
+                onMouseLeave={onTextLeave}
+                className="text-left"
+              >
+                <span className="font-mono text-[11px] opacity-40 mr-3">0{i + 2}</span>
+                <span className="font-display text-5xl">{item.label}</span>
+              </motion.button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
