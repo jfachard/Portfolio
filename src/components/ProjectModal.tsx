@@ -15,6 +15,7 @@ interface Project {
   caseStudy?: CaseStudy;
   tags: string[];
   image: string;
+  imageFit?: 'cover' | 'contain';
   githubUrl: string;
   demoUrl?: string;
   featured: boolean;
@@ -101,7 +102,10 @@ export const ProjectModal = ({
               </svg>
             </button>
 
-            <div className="relative w-full aspect-video overflow-hidden">
+            <div
+              className="relative w-full aspect-video overflow-hidden"
+              style={{ background: 'var(--surface)' }}
+            >
               <div
                 className="stripe absolute inset-0"
                 style={{
@@ -112,7 +116,11 @@ export const ProjectModal = ({
               <img
                 src={project.image}
                 alt={project.title}
-                className="relative w-full h-full object-cover"
+                className={`relative w-full h-full ${
+                  project.imageFit === 'contain'
+                    ? 'object-contain p-10 md:p-14'
+                    : 'object-cover object-[center_18%]'
+                }`}
               />
             </div>
 

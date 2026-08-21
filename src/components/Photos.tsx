@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import photosData from '../data/photos.json';
+import { SectionHeading } from './SectionHeading';
 
 interface Photo {
   id: string;
@@ -12,7 +13,7 @@ interface Photo {
 
 interface PhotosProps {
   texts: {
-    sectionLabel: string;
+    title: string;
     hint: string;
   };
   language: 'fr' | 'en';
@@ -47,18 +48,16 @@ export const Photos = ({ texts, language, onTextHover, onTextLeave }: PhotosProp
 
   return (
     <section id="photos" className="page-shell page-pad pb-[var(--section-pad)]">
-      <div className="flex flex-wrap items-end justify-between gap-3 mb-7">
-        <p
-          className="section-eyebrow !mb-0"
-          onMouseEnter={onTextHover}
-          onMouseLeave={onTextLeave}
-        >
-          {texts.sectionLabel}
-        </p>
-        <p className="font-mono text-[11px] opacity-35 uppercase tracking-[0.08em] hidden sm:block">
-          {texts.hint}
-        </p>
-      </div>
+      <SectionHeading
+        title={texts.title}
+        onTextHover={onTextHover}
+        onTextLeave={onTextLeave}
+        aside={
+          <p className="font-mono text-[11px] opacity-35 uppercase tracking-[0.08em] hidden sm:block mb-1.5">
+            {texts.hint}
+          </p>
+        }
+      />
 
       <div className="photos-masonry">
         {photos.map((photo, i) => {

@@ -18,6 +18,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 1.25rem;
+}
+
+section[id] {
+  scroll-margin-top: 1.25rem;
 }
 
 html, body, #root {

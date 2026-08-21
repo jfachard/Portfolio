@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { LayoutGroup } from 'motion/react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ProjectCard } from './ProjectCard';
 import { ProjectModal } from './ProjectModal';
+import { SectionHeading } from './SectionHeading';
+import { getHashId, resolveSectionId, setHash } from '../lib/hash';
 
 interface Project {
   id: string;
@@ -15,6 +16,7 @@ interface Project {
   };
   tags: string[];
   image: string;
+  imageFit?: 'cover' | 'contain';
   githubUrl: string;
   demoUrl?: string;
   featured: boolean;
@@ -23,13 +25,11 @@ interface Project {
 interface ProjectsProps {
   texts: {
     projects: string;
-    featuredBadge: string;
     featuredProject: string;
     technologies: string;
     viewOnGithub: string;
     viewOnUnityVC: string;
     liveDemo: string;
-    sectionLabel?: string;
     caseStudy: {
       problem: string;
       decision: string;
@@ -40,16 +40,6 @@ interface ProjectsProps {
   onTextHover: (e: React.MouseEvent<HTMLElement>) => void;
   onTextLeave: () => void;
 }
-
-const projectIdFromHash = () => {
-  const id = window.location.hash.replace(/^#/, '');
-  return id || null;
-};
-
-const clearProjectHash = () => {
-  const { pathname, search } = window.location;
-  window.history.replaceState(null, '', `${pathname}${search}`);
-};
 
 export const Projects = ({ texts, language, onTextHover, onTextLeave }: ProjectsProps) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -70,42 +60,28 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
     loadProjects();
   }, [language]);
 
-  const { hero, rest } = useMemo(() => {
-    const featured = projects.find((p) => p.featured) ?? projects[0];
-    if (!featured) return { hero: null, rest: [] as Project[] };
-    return {
-      hero: featured,
-      rest: projects.filter((p) => p.id !== featured.id),
-    };
-  }, [projects]);
-
   const openProject = useCallback((project: Project, { syncHash = true } = {}) => {
     setSelectedProject(project);
     setIsModalOpen(true);
-    if (syncHash && projectIdFromHash() !== project.id) {
-      window.history.pushState({ project: project.id }, '', `#${project.id}`);
+    if (syncHash && getHashId() !== project.id) {
+      setHash(project.id, 'push');
     }
   }, []);
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedProject(null), 150);
-    if (projects.some((p) => p.id === projectIdFromHash())) {
-      clearProjectHash();
+    if (projects.some((p) => p.id === getHashId())) {
+      setHash('projects', 'replace');
     }
   }, [projects]);
 
-  const handleCardClick = (project: Project) => {
-    openProject(project);
-  };
-
-  // Deep link: #wordev → open modal (+ scroll once on landing)
   useEffect(() => {
     if (!projects.length) return;
 
     const syncFromUrl = () => {
-      const id = projectIdFromHash();
-      if (!id) {
+      const id = getHashId();
+      if (!id || resolveSectionId(id)) {
         setIsModalOpen(false);
         setTimeout(() => setSelectedProject(null), 150);
         return;
@@ -134,7 +110,6 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
     };
   }, [projects]);
 
-  // Keep modal content in sync when switching FR/EN
   useEffect(() => {
     if (!selectedProject || !projects.length) return;
     const updated = projects.find((p) => p.id === selectedProject.id);
@@ -142,41 +117,25 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
   }, [projects, selectedProject]);
 
   return (
-    <LayoutGroup>
+    <>
       <section id="projects" className="page-shell page-pad pb-(--section-pad)">
-        <p
-          className="section-eyebrow"
-          onMouseEnter={onTextHover}
-          onMouseLeave={onTextLeave}
-        >
-          {texts.sectionLabel ?? `02 — ${texts.projects}`}
-        </p>
+        <SectionHeading
+          title={texts.projects}
+          onTextHover={onTextHover}
+          onTextLeave={onTextLeave}
+        />
 
-        {hero && (
-          <ProjectCard
-            project={hero}
-            index={0}
-            variant="hero"
-            onClick={() => handleCardClick(hero)}
-            featuredText={texts.featuredBadge}
-            liveDemoText={texts.liveDemo}
-          />
-        )}
-
-        {rest.length > 0 && (
-          <div className="mt-6 sm:mt-8 md:mt-10 border-t border-[oklch(94%_0.006_250/0.12)]">
-            {rest.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index + 1}
-                variant="compact"
-                onClick={() => handleCardClick(project)}
-                featuredText={texts.featuredBadge}
-              />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-12 md:gap-y-16">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onClick={() => openProject(project)}
+              liveDemoText={texts.liveDemo}
+            />
+          ))}
+        </div>
       </section>
 
       <ProjectModal
@@ -192,6 +151,6 @@ export const Projects = ({ texts, language, onTextHover, onTextLeave }: Projects
           caseStudy: texts.caseStudy,
         }}
       />
-    </LayoutGroup>
+    </>
   );
 };

@@ -11,7 +11,8 @@
         "result": "3 modes in production (Solo / Daily / Versus), 1v1 matchmaking, persistent ELO, live opponent progress. Live at wordev.jfachard.com"
       },
       "tags": ["Vue.js", "TypeScript", "NestJS", "PostgreSQL", "Prisma", "Socket.io"],
-      "image": "/images/Wordev.png",
+      "image": "/images/Wordev.jpg",
+      "imageFit": "contain",
       "githubUrl": "https://github.com/jfachard/Wordev",
       "demoUrl": "https://wordev.jfachard.com",
       "featured": true
@@ -27,7 +28,8 @@
         "result": "Full-stack mobile app: spot discovery, favorites, reviews, image upload, geo filters. API stack ready to scale."
       },
       "tags": ["React Native", "TypeScript", "Expo", "NestJS", "Prisma", "PostgreSQL"],
-      "image": "/images/WorkSpot.png",
+      "image": "/images/WorkSpot.jpg",
+      "imageFit": "contain",
       "githubUrl": "https://github.com/jfachard/Work-Spot",
       "featured": true
     },
@@ -43,6 +45,7 @@
       },
       "tags": ["React", "TypeScript", "Node.js", "Express", "Socket.io"],
       "image": "/images/DevDuel.png",
+      "imageFit": "cover",
       "githubUrl": "https://github.com/jfachard/DevDuel",
       "demoUrl": "https://dev-duel-five.vercel.app/",
       "featured": true
@@ -59,6 +62,7 @@
       },
       "tags": ["Unity", "C#", "VR", "Game Design"],
       "image": "/images/TheLastKeyIcone.png",
+      "imageFit": "contain",
       "githubUrl": "https://cloud.unity.com/home/organizations/9072054746043/projects/aafcf4ae-aa35-413c-9919-40b8b7c85caa/plastic-scm/organizations/9072054746043/repositories/TheLastKey%2FTheLastKey",
       "featured": false
     },
@@ -73,7 +77,8 @@
         "result": "Working mobile client on Trello: read/manage tasks via the official API."
       },
       "tags": ["React Native", "TypeScript", "Trello API"],
-      "image": "/images/Trello-Logo.png",
+      "image": "/images/Trello-Logo.jpg",
+      "imageFit": "contain",
       "githubUrl": "https://github.com/jfachard/TrellTech",
       "featured": false
     },
@@ -89,6 +94,7 @@
       },
       "tags": ["MongoDB", "Express", "React", "Node.js", "Socket.io"],
       "image": "/images/Chat.png",
+      "imageFit": "cover",
       "githubUrl": "https://github.com/jfachard/Chat"
     }
   ]

@@ -10,7 +10,6 @@ interface HeroProps {
     description: string;
     cta: string;
     downloadCv: string;
-    downloadCvAts: string;
     nowPlaying: string;
     lastPlayed: string;
   };
@@ -73,8 +72,25 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
             transition={{ duration: 0.7 }}
             className="relative z-10 lg:max-w-[62%] xl:max-w-[58%]"
           >
+            <h1
+              className="font-display leading-[0.92] m-0 w-fit"
+              style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+            >
+              {texts.firstName}
+            </h1>
+            <h1
+              className="font-display leading-[0.92] m-0 mb-4 md:mb-5 opacity-[0.32] w-fit"
+              style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
+              onMouseEnter={onTextHover}
+              onMouseLeave={onTextLeave}
+            >
+              {texts.lastName}
+            </h1>
+
             <p
-              className="section-eyebrow !mb-3"
+              className="text-[15px] md:text-[17px] font-medium leading-snug opacity-80 mb-2.5"
               onMouseEnter={onTextHover}
               onMouseLeave={onTextLeave}
             >
@@ -88,23 +104,6 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
             >
               {texts.status}
             </p>
-
-            <h1
-              className="font-display leading-[0.92] m-0 w-fit"
-              style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
-              {texts.firstName}
-            </h1>
-            <h1
-              className="font-display leading-[0.92] m-0 mb-5 md:mb-8 opacity-[0.32] w-fit"
-              style={{ fontSize: 'clamp(3.25rem, 11vw, 7rem)' }}
-              onMouseEnter={onTextHover}
-              onMouseLeave={onTextLeave}
-            >
-              {texts.lastName}
-            </h1>
 
             <p
               className="text-[17px] md:text-[19px] leading-[1.6] max-w-[520px] opacity-70 mb-8 md:mb-9"
@@ -145,15 +144,6 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
                   onMouseLeave={onTextLeave}
                 >
                   LinkedIn
-                </a>
-                <a
-                  href={`/CV_${language.toUpperCase()}.pdf`}
-                  download
-                  className="text-[12px] font-medium opacity-35 hover:opacity-70 transition-opacity"
-                  onMouseEnter={onTextHover}
-                  onMouseLeave={onTextLeave}
-                >
-                  {texts.downloadCvAts}
                 </a>
               </div>
             </div>

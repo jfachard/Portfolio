@@ -1,5 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import {
+  SECTION_IDS,
+  getHashId,
+  resolveSectionId,
+  setHash,
+} from '../lib/hash';
 
 interface NavigationProps {
   texts: {
@@ -25,15 +31,29 @@ export const Navigation = ({
 }: NavigationProps) => {
   const [activeSection, setActiveSection] = useState('hero');
   const [menuOpen, setMenuOpen] = useState(false);
+  const hashLock = useRef(true);
+  const lockTimer = useRef<number>(0);
+
+  const lockHash = (ms = 850) => {
+    hashLock.current = true;
+    window.clearTimeout(lockTimer.current);
+    lockTimer.current = window.setTimeout(() => {
+      hashLock.current = false;
+    }, ms);
+  };
 
   useEffect(() => {
-    const sectionIds = ['hero', 'projects', 'experience', 'skills', 'photos', 'contact'];
-    const observers = sectionIds.map((id) => {
+    const observers = SECTION_IDS.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
+          if (!entry.isIntersecting) return;
+          if (hashLock.current) return;
+          if (getHashId() && !resolveSectionId(getHashId())) return;
+
+          setActiveSection(id);
+          setHash(id === 'hero' ? '' : id, 'replace');
         },
         { threshold: 0, rootMargin: '-12% 0px -72% 0px' }
       );
@@ -41,6 +61,30 @@ export const Navigation = ({
       return observer;
     });
     return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+
+  useEffect(() => {
+    const id = resolveSectionId(getHashId());
+    if (id) {
+      setActiveSection(id);
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'auto' });
+      });
+    }
+    lockHash(id ? 600 : 150);
+  }, []);
+
+  useEffect(() => {
+    const onPop = () => {
+      const hash = getHashId();
+      const id = resolveSectionId(hash) ?? (hash ? null : 'hero');
+      if (!id) return;
+      lockHash();
+      setActiveSection(id);
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   useEffect(() => {
@@ -52,6 +96,8 @@ export const Navigation = ({
     };
   }, [menuOpen]);
 
+  useEffect(() => () => window.clearTimeout(lockTimer.current), []);
+
   const navItems = [
     { id: 'projects', label: texts.projects },
     { id: 'experience', label: texts.experience },
@@ -60,9 +106,15 @@ export const Navigation = ({
     { id: 'contact', label: texts.contact },
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  const goToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    lockHash();
+    setActiveSection(id);
+    setHash(id, 'push');
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);
   };
 
@@ -72,17 +124,19 @@ export const Navigation = ({
         <div className="flex items-center gap-5 md:gap-8">
           <nav className="hidden md:flex items-center gap-9">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                href={`#${item.id}`}
+                onClick={(e) => goToSection(e, item.id)}
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
+                aria-current={activeSection === item.id ? 'location' : undefined}
                 className={`text-[13px] font-medium uppercase tracking-[0.08em] transition-opacity ${
                   activeSection === item.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
                 }`}
               >
                 {item.label}
-              </button>
+              </a>
             ))}
           </nav>
 
@@ -148,19 +202,20 @@ export const Navigation = ({
             className="fixed inset-0 z-50 bg-(--bg-color) md:hidden flex flex-col justify-center px-8 gap-8"
           >
             {navItems.map((item, i) => (
-              <motion.button
+              <motion.a
                 key={item.id}
+                href={`#${item.id}`}
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * i }}
-                onClick={() => scrollToSection(item.id)}
+                onClick={(e) => goToSection(e, item.id)}
                 onMouseEnter={onTextHover}
                 onMouseLeave={onTextLeave}
+                aria-current={activeSection === item.id ? 'location' : undefined}
                 className="text-left"
               >
-                <span className="font-mono text-[11px] opacity-40 mr-3">0{i + 2}</span>
                 <span className="font-display text-5xl">{item.label}</span>
-              </motion.button>
+              </motion.a>
             ))}
           </motion.div>
         )}

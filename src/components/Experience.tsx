@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
+import { SectionHeading } from './SectionHeading';
 
 interface ExperienceProps {
   texts: {
     title: string;
-    sectionLabel?: string;
     experiences: Array<{
       company: string;
       position: string;
@@ -20,16 +20,17 @@ interface ExperienceProps {
 export const Experience = ({ texts, onTextHover, onTextLeave }: ExperienceProps) => {
   return (
     <section id="experience" className="page-shell page-pad pb-(--section-pad)">
-      <motion.p
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="section-eyebrow"
-        onMouseEnter={onTextHover}
-        onMouseLeave={onTextLeave}
       >
-        {texts.sectionLabel ?? `03 — ${texts.title}`}
-      </motion.p>
+        <SectionHeading
+          title={texts.title}
+          onTextHover={onTextHover}
+          onTextLeave={onTextLeave}
+        />
+      </motion.div>
 
       <div className="relative pl-8 max-w-3xl">
         <div className="absolute left-[5px] top-1.5 bottom-1.5 w-px bg-current opacity-20" />

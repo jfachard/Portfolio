@@ -16,13 +16,11 @@
       "description": "Je construis des applications web performantes et des systèmes temps réel — du Wordle pour développeurs aux duels de code multijoueur.",
       "cta": "Découvrir mes projets",
       "downloadCv": "Télécharger CV",
-      "downloadCvAts": "Version ATS",
       "nowPlaying": "En écoute",
       "lastPlayed": "Dernier son"
     },
     "projects": {
       "projects": "Projets",
-      "sectionLabel": "02 — Projets sélectionnés",
       "featuredBadge": "Featured",
       "featuredProject": "Projet en vedette",
       "technologies": "Technologies",
@@ -37,7 +35,6 @@
     },
     "skills": {
       "title": "Compétences",
-      "sectionLabel": "04 — Compétences",
       "subtitle": "Technologies",
       "categories": {
         "frontend": "Frontend",
@@ -48,12 +45,11 @@
       }
     },
     "photos": {
-      "sectionLabel": "05 — Photos",
+      "title": "Photos",
       "hint": "Click →"
     },
     "experience": {
       "title": "Expérience",
-      "sectionLabel": "03 — Expérience",
       "experiences": [
         {
           "company": "Promo+",
@@ -119,13 +115,11 @@
       "description": "Building performant web applications and real-time systems — from Wordle-style word games to live multiplayer coding duels.",
       "cta": "Discover my projects",
       "downloadCv": "Download CV",
-      "downloadCvAts": "ATS version",
       "nowPlaying": "Now playing",
       "lastPlayed": "Last played"
     },
     "projects": {
       "projects": "Projects",
-      "sectionLabel": "02 — Selected Projects",
       "featuredBadge": "Featured",
       "featuredProject": "Featured Project",
       "technologies": "Technologies",
@@ -140,7 +134,6 @@
     },
     "skills": {
       "title": "Skills",
-      "sectionLabel": "04 — Skills",
       "subtitle": "Technologies",
       "categories": {
         "frontend": "Frontend",
@@ -151,12 +144,11 @@
       }
     },
     "photos": {
-      "sectionLabel": "05 — Photos",
+      "title": "Photos",
       "hint": "Click →"
     },
     "experience": {
       "title": "Experience",
-      "sectionLabel": "03 — Experience",
       "experiences": [
         {
           "company": "Promo+",
