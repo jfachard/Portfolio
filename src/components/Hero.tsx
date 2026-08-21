@@ -115,7 +115,7 @@ export const Hero = ({ texts, language, onTextHover, onTextLeave }: HeroProps) =
 
             <div className="flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-7 sm:gap-y-3">
               <a
-                href={`/CV_visual_${language.toUpperCase()}.pdf`}
+                href={language === 'fr' ? '/CV_visual_FR.pdf' : '/CV_EN.pdf'}
                 download
                 className="cv-btn w-fit"
                 onMouseEnter={onTextHover}
