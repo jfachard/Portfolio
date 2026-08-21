@@ -16,6 +16,7 @@ interface Project {
   tags: string[];
   image: string;
   imageFit?: 'cover' | 'contain';
+  imageAspect?: string;
   githubUrl: string;
   demoUrl?: string;
   featured: boolean;
@@ -103,8 +104,11 @@ export const ProjectModal = ({
             </button>
 
             <div
-              className="relative w-full aspect-video overflow-hidden"
-              style={{ background: 'var(--surface)' }}
+              className={`relative w-full overflow-hidden ${project.imageAspect ? '' : 'aspect-video'}`}
+              style={{
+                background: 'var(--surface)',
+                ...(project.imageAspect ? { aspectRatio: project.imageAspect } : {}),
+              }}
             >
               <div
                 className="stripe absolute inset-0"
@@ -117,9 +121,11 @@ export const ProjectModal = ({
                 src={project.image}
                 alt={project.title}
                 className={`relative w-full h-full ${
-                  project.imageFit === 'contain'
-                    ? 'object-contain p-10 md:p-14'
-                    : 'object-cover object-[center_18%]'
+                  project.imageAspect
+                    ? 'object-cover'
+                    : project.imageFit === 'contain'
+                      ? 'object-contain p-10 md:p-14'
+                      : 'object-cover object-[center_18%]'
                 }`}
               />
             </div>

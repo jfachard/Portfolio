@@ -17,6 +17,7 @@ interface Project {
   tags: string[];
   image: string;
   imageFit?: 'cover' | 'contain';
+  imageAspect?: string;
   githubUrl: string;
   demoUrl?: string;
   featured: boolean;

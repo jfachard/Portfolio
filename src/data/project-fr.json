@@ -12,7 +12,8 @@
       },
       "tags": ["Vue.js", "TypeScript", "NestJS", "PostgreSQL", "Prisma", "Socket.io"],
       "image": "/images/Wordev.jpg",
-      "imageFit": "contain",
+      "imageFit": "cover",
+      "imageAspect": "1640 / 640",
       "githubUrl": "https://github.com/jfachard/Wordev",
       "demoUrl": "https://wordev.jfachard.com",
       "featured": true
@@ -29,7 +30,8 @@
       },
       "tags": ["React Native", "TypeScript", "Expo", "NestJS", "Prisma", "PostgreSQL"],
       "image": "/images/WorkSpot.jpg",
-      "imageFit": "contain",
+      "imageFit": "cover",
+      "imageAspect": "1376 / 768",
       "githubUrl": "https://github.com/jfachard/Work-Spot",
       "featured": true
     },
@@ -78,7 +80,8 @@
       },
       "tags": ["React Native", "TypeScript", "Trello API"],
       "image": "/images/Trello-Logo.jpg",
-      "imageFit": "contain",
+      "imageFit": "cover",
+      "imageAspect": "1376 / 768",
       "githubUrl": "https://github.com/jfachard/TrellTech",
       "featured": false
     },

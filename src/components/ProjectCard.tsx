@@ -8,6 +8,7 @@ interface Project {
   tags: string[];
   image: string;
   imageFit?: 'cover' | 'contain';
+  imageAspect?: string;
   githubUrl: string;
   demoUrl?: string;
   featured: boolean;
@@ -27,7 +28,8 @@ export const ProjectCard = ({
   liveDemoText,
 }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const contain = project.imageFit === 'contain';
+  const exact = !!project.imageAspect;
+  const contain = !exact && project.imageFit === 'contain';
 
   return (
     <article
@@ -43,8 +45,11 @@ export const ProjectCard = ({
       }}
     >
       <div
-        className="relative aspect-16/10 w-full rounded-(--radius) overflow-hidden"
-        style={{ background: 'var(--surface)' }}
+        className={`relative w-full rounded-(--radius) overflow-hidden ${exact ? '' : 'aspect-16/10'}`}
+        style={{
+          background: 'var(--surface)',
+          ...(exact ? { aspectRatio: project.imageAspect } : {}),
+        }}
       >
         <div
           className={`stripe absolute inset-0 transition-opacity duration-300 ${
@@ -60,14 +65,16 @@ export const ProjectCard = ({
           alt={project.title}
           loading={index < 2 ? 'eager' : 'lazy'}
           className={`w-full h-full transition-transform duration-700 group-hover:scale-[1.03] ${
-            contain
-              ? 'object-contain p-7 sm:p-9 md:p-10'
-              : 'object-cover object-[center_18%]'
+            exact
+              ? 'object-cover'
+              : contain
+                ? 'object-contain p-7 sm:p-9 md:p-10'
+                : 'object-cover object-[center_18%]'
           } ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageLoaded(true)}
         />
-        {!contain && (
+        {!contain && !exact && (
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
